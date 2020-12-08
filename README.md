@@ -1,1 +1,1 @@
-# COVID_19_Kit_and_Plasma_Distribution_System
+# COVID_19_Plasma_Distribution_System
