@@ -5,6 +5,8 @@
  */
 package HomePages;
 
+import Business.EcoSystem;
+import Business.People.DonorRequestDirectory;
 import java.awt.CardLayout;
 import userinterface.CovidCentreCoordinatorRole.NewReceiverJPanel;
 import userinterface.GovernmentCoordinatorRole.NewDonorJPanel;
@@ -18,13 +20,18 @@ public class DonorReceiverFramePage extends javax.swing.JFrame {
     /**
      * Creates new form DonorReceiverFramePage
      */
-    public DonorReceiverFramePage(String type) {
+    
+    
+    
+      
+    public DonorReceiverFramePage(String type, EcoSystem system) {
         initComponents();
+        //this.donorRequestDirectory = donorRequestDirectory;
         
         if(type.equals("donor")){
             userProcessContainer.remove(this);
             CardLayout layout=(CardLayout)userProcessContainer.getLayout();
-            NewDonorJPanel newdpanel = new NewDonorJPanel();
+            NewDonorJPanel newdpanel = new NewDonorJPanel(system);
             userProcessContainer.add("workArea", newdpanel);
             
             layout.next(userProcessContainer);
@@ -32,7 +39,7 @@ public class DonorReceiverFramePage extends javax.swing.JFrame {
         else{
             userProcessContainer.remove(this);
             CardLayout layout=(CardLayout)userProcessContainer.getLayout();
-            NewReceiverJPanel newdpanel = new NewReceiverJPanel();
+            NewReceiverJPanel newdpanel = new NewReceiverJPanel(system);
             userProcessContainer.add("workArea", newdpanel);
             
             layout.next(userProcessContainer);
