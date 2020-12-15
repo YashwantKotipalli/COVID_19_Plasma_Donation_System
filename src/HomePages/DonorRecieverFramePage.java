@@ -8,6 +8,8 @@ package HomePages;
 import Business.EcoSystem;
 import Business.People.DonorRequestDirectory;
 import java.awt.CardLayout;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import userinterface.CovidCentreCoordinatorRole.NewReceiverJPanel;
 import userinterface.GovernmentCoordinatorRole.NewDonorJPanel;
 
@@ -22,6 +24,9 @@ public class DonorRecieverFramePage extends javax.swing.JFrame {
     public DonorRecieverFramePage(String type, EcoSystem system) {
         initComponents();
         //this.donorRequestDirectory = donorRequestDirectory;
+        
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2- this.getSize().height/2);
         
         if(type.equals("donor")){
             userProcessContainer.remove(this);
@@ -57,6 +62,8 @@ public class DonorRecieverFramePage extends javax.swing.JFrame {
         userProcessContainer = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(1550, 900));
 
         userProcessContainer.setLayout(new java.awt.CardLayout());
 
