@@ -15,6 +15,7 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
@@ -77,12 +78,14 @@ public class LoginPage extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(700, 740));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1200, 747));
+        setPreferredSize(new java.awt.Dimension(1550, 900));
 
+        userProcessContainer.setPreferredSize(new java.awt.Dimension(2000, 1800));
         userProcessContainer.setLayout(new java.awt.CardLayout());
 
         jPanel2.setPreferredSize(new java.awt.Dimension(0, 0));
         jPanel2.setRequestFocusEnabled(false);
+        jPanel2.setLayout(new java.awt.BorderLayout());
 
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -206,35 +209,11 @@ public class LoginPage extends javax.swing.JFrame {
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/YouTube_Video_Swing_Ui_6_TechnoKID.png"))); // NOI18N
         jPanel4.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 350));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        jPanel2.add(jPanel4, java.awt.BorderLayout.CENTER);
 
         userProcessContainer.add(jPanel2, "card2");
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(userProcessContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(userProcessContainer, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 747, Short.MAX_VALUE)
-        );
+        getContentPane().add(userProcessContainer, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -298,7 +277,10 @@ public class LoginPage extends javax.swing.JFrame {
         }
         
         if(userAccount==null){
-            JOptionPane.showMessageDialog(null, "Invalid credentials!");
+        JOptionPane.showMessageDialog(null, new JLabel("<html><h2><I><font color='red'>Invalid</font> credentials!</I></h2></html>"));
+            
+            
+            //JOptionPane.showMessageDialog(null, "Invalid credentials!");
             return;
         }
         else{

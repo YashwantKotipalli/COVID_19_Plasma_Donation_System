@@ -350,7 +350,7 @@ public class MainHomePage extends javax.swing.JFrame {
 
     private void HomeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HomeMousePressed
         // TODO add your handling code here:
-        new LoginPage().show();
+        new HomePage().show();
     }//GEN-LAST:event_HomeMousePressed
 
     private void AdminEnterpriseMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AdminEnterpriseMousePressed
