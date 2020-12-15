@@ -5,11 +5,16 @@
  */
 package userinterface.GovernmentCoordinatorRole;
 
+import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
 import Business.People.Donor;
 import Business.People.DonorDirectory;
+import Business.People.DonorRequest;
+import Business.People.DonorRequestDirectory;
 import Business.UserAccount.UserAccount;
 import HomePages.TableFormat;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -24,21 +29,41 @@ public class DonorStatusJPanel extends javax.swing.JPanel {
     
    //private DonorDirectory donorDirectory;
     private EcoSystem system;
+     private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
     
     public DonorStatusJPanel(EcoSystem system) {
         initComponents();
         //this.donorDirectory =  donorDirectory;
         this.system = system;
-        donorTable.getTableHeader().setDefaultRenderer(new TableFormat());
+        donorRequestTable.getTableHeader().setDefaultRenderer(new TableFormat());
+        donorRequestTable1.getTableHeader().setDefaultRenderer(new TableFormat());
         populateTable();
+        populateTableS();
     }
     
-         private void populateTable() {
-        DefaultTableModel dtm = (DefaultTableModel) donorTable.getModel();
+         
+    private void populateTable() {
+        DefaultTableModel dtm = (DefaultTableModel) donorRequestTable.getModel();
         
         dtm.setRowCount(0);
         
          for(Donor donor: system.getDonorDirectory().getDonorList()){            
+            Object row[] = new Object[4];
+            row[0]= donor;
+            row[1]=donor.getName();
+            row[2]=donor.getContact();
+            row[3]=donor.getStatus();
+              
+            dtm.addRow(row);
+        }
+        
+    }
+    private void populateTableS() {
+        DefaultTableModel dtm = (DefaultTableModel) donorRequestTable1.getModel();
+        
+        dtm.setRowCount(0);
+        
+         for(DonorRequest donor: system.getDonorRequestDirectory().getDonorRequestList()){            
             Object row[] = new Object[4];
             row[0]= donor;
             row[1]=donor.getName();
@@ -62,19 +87,21 @@ public class DonorStatusJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        donorTable = new javax.swing.JTable();
+        donorRequestTable = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         jLabel25 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        donorRequestTable1 = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(208, 93, 2));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        donorTable.setBackground(new java.awt.Color(0, 0, 0));
-        donorTable.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
-        donorTable.setForeground(new java.awt.Color(255, 255, 255));
-        donorTable.setModel(new javax.swing.table.DefaultTableModel(
+        donorRequestTable.setBackground(new java.awt.Color(0, 0, 0));
+        donorRequestTable.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
+        donorRequestTable.setForeground(new java.awt.Color(255, 255, 255));
+        donorRequestTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -82,13 +109,13 @@ public class DonorStatusJPanel extends javax.swing.JPanel {
                 "Donor ID", "Name", "Contact", "Status"
             }
         ));
-        donorTable.setGridColor(new java.awt.Color(0, 0, 0));
-        donorTable.setIntercellSpacing(new java.awt.Dimension(0, 0));
-        donorTable.setRowHeight(30);
-        donorTable.setShowVerticalLines(false);
-        jScrollPane1.setViewportView(donorTable);
+        donorRequestTable.setGridColor(new java.awt.Color(0, 0, 0));
+        donorRequestTable.setIntercellSpacing(new java.awt.Dimension(0, 0));
+        donorRequestTable.setRowHeight(30);
+        donorRequestTable.setShowVerticalLines(false);
+        jScrollPane1.setViewportView(donorRequestTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, 1030, 430));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 580, 1030, 160));
 
         jPanel3.setBackground(new java.awt.Color(31, 31, 31));
         jPanel3.setPreferredSize(new java.awt.Dimension(926, 70));
@@ -127,23 +154,61 @@ public class DonorStatusJPanel extends javax.swing.JPanel {
                 jButton1ActionPerformed(evt);
             }
         });
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 580, 117, 39));
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 520, 117, 39));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/blood-donation_2.png"))); // NOI18N
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1190, 250, -1, 141));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 340, -1, 141));
+
+        donorRequestTable1.setBackground(new java.awt.Color(0, 0, 0));
+        donorRequestTable1.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
+        donorRequestTable1.setForeground(new java.awt.Color(255, 255, 255));
+        donorRequestTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Donor ID", "Name", "Contact", "Status"
+            }
+        ));
+        donorRequestTable1.setGridColor(new java.awt.Color(0, 0, 0));
+        donorRequestTable1.setIntercellSpacing(new java.awt.Dimension(0, 0));
+        donorRequestTable1.setRowHeight(30);
+        donorRequestTable1.setShowVerticalLines(false);
+        jScrollPane2.setViewportView(donorRequestTable1);
+
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, 1030, 160));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+         //TODO add your handling code here:
+        
+        // DonorRequestDirectory ddr = new DonorRequestDirectory();
+         int selectedRow = donorRequestTable1.getSelectedRow(); 
+          DonorRequest dr =((DonorRequest) donorRequestTable1.getValueAt(selectedRow, 0));
+ 
+          system.getDonorRequestDirectory().removeDonorRequest(dr);
+          
+          //ddr.removeDonorRequest(dr);
+             
+          
+          dB4OUtil.storeSystem(system);
+          populateTableS();
+       
+        
+        
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable donorTable;
+    private javax.swing.JTable donorRequestTable;
+    private javax.swing.JTable donorRequestTable1;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }

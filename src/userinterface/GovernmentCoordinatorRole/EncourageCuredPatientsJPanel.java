@@ -87,12 +87,13 @@ public class EncourageCuredPatientsJPanel extends javax.swing.JPanel {
         toTextField = new javax.swing.JTextField();
         fromTextField = new javax.swing.JTextField();
         subjectTextField = new javax.swing.JTextField();
-        messageTextField = new javax.swing.JTextField();
         sendButton = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel25 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        messageTextField = new javax.swing.JTextArea();
 
         setBackground(new java.awt.Color(208, 93, 2));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -181,11 +182,6 @@ public class EncourageCuredPatientsJPanel extends javax.swing.JPanel {
         });
         add(subjectTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 500, 330, -1));
 
-        messageTextField.setBackground(new java.awt.Color(0, 0, 0));
-        messageTextField.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
-        messageTextField.setForeground(new java.awt.Color(255, 255, 255));
-        add(messageTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 550, 330, 190));
-
         sendButton.setBackground(new java.awt.Color(31, 31, 31));
         sendButton.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         sendButton.setForeground(new java.awt.Color(255, 255, 255));
@@ -239,6 +235,15 @@ public class EncourageCuredPatientsJPanel extends javax.swing.JPanel {
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/letter.png"))); // NOI18N
         add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 460, 140, 130));
+
+        messageTextField.setBackground(new java.awt.Color(0, 0, 0));
+        messageTextField.setColumns(20);
+        messageTextField.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        messageTextField.setForeground(new java.awt.Color(255, 255, 255));
+        messageTextField.setRows(5);
+        jScrollPane2.setViewportView(messageTextField);
+
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 570, 340, 260));
     }// </editor-fold>//GEN-END:initComponents
 
     private void toTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toTextFieldActionPerformed
@@ -345,7 +350,8 @@ public class EncourageCuredPatientsJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField messageTextField;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea messageTextField;
     private javax.swing.JButton sendButton;
     private javax.swing.JTextField subjectTextField;
     private javax.swing.JTable tblCuredPatient;

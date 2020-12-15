@@ -29,6 +29,17 @@ public class DonorRequestDirectory {
         donorRequestList.add(donorRequest);
         return donorRequest;
     }
+    public DonorRequest removeDonorRequest(DonorRequest donor)
+    {
+        //DonorRequest donorRequest = new DonorRequest();
+        //this.donor = donor
+        donorRequestList.remove(donor);
+        //return donorRequest;
+        return null;
+    }
+    
+    
+    
     
     
     

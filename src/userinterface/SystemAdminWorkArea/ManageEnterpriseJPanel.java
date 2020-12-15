@@ -406,7 +406,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
             String name = txtName.getText();
 
             Enterprise enterprise = network.getEnterpriseDirectory().createAndAddEnterprise(name, type);
-            enterprise.setContact(Integer.parseInt(txtContact.getText()));
+            enterprise.setContact((int) (Double.parseDouble(txtContact.getText())));
             enterprise.setZipcode(Integer.parseInt(txtZipCode.getText()));
             enterprise.setEmail(txtEmail.getText());
 
