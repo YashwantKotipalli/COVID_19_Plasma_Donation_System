@@ -25,6 +25,10 @@ import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.io.IOException;
+import java.security.GeneralSecurityException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -134,11 +138,10 @@ public class GovernmentCoordinatorWorkAreaJPanel extends javax.swing.JPanel {
 
         Header.setBackground(new java.awt.Color(15, 29, 52));
         Header.setPreferredSize(new java.awt.Dimension(800, 50));
-        Header.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        Header.setLayout(new java.awt.BorderLayout());
 
-        jPanel6.setBackground(new java.awt.Color(15, 29, 52));
+        jPanel6.setBackground(new java.awt.Color(0, 0, 0));
         jPanel6.setPreferredSize(new java.awt.Dimension(150, 50));
-        jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         ButtonClose.setBackground(new java.awt.Color(15, 29, 52));
         ButtonClose.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -162,16 +165,12 @@ public class GovernmentCoordinatorWorkAreaJPanel extends javax.swing.JPanel {
         ButtonClose.setLayout(ButtonCloseLayout);
         ButtonCloseLayout.setHorizontalGroup(
             ButtonCloseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ButtonCloseLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(close, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(close, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
         );
         ButtonCloseLayout.setVerticalGroup(
             ButtonCloseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(close, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+            .addComponent(close, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
-
-        jPanel6.add(ButtonClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 0, -1, -1));
 
         ButtonMax.setBackground(new java.awt.Color(15, 29, 52));
         ButtonMax.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -194,22 +193,30 @@ public class GovernmentCoordinatorWorkAreaJPanel extends javax.swing.JPanel {
         ButtonMax.setLayout(ButtonMaxLayout);
         ButtonMaxLayout.setHorizontalGroup(
             ButtonMaxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 53, Short.MAX_VALUE)
-            .addGroup(ButtonMaxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(ButtonMaxLayout.createSequentialGroup()
-                    .addComponent(fullmax, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addComponent(fullmax, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
         );
         ButtonMaxLayout.setVerticalGroup(
             ButtonMaxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
-            .addGroup(ButtonMaxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(fullmax, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE))
+            .addComponent(fullmax, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        jPanel6.add(ButtonMax, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, -1, -1));
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap(646, Short.MAX_VALUE)
+                .addComponent(ButtonMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ButtonClose, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(ButtonClose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(ButtonMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
-        Header.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 0, 160, 50));
+        Header.add(jPanel6, java.awt.BorderLayout.CENTER);
 
         add(Header, java.awt.BorderLayout.PAGE_START);
 
@@ -217,7 +224,7 @@ public class GovernmentCoordinatorWorkAreaJPanel extends javax.swing.JPanel {
         menu.setPreferredSize(new java.awt.Dimension(270, 500));
         menu.setLayout(new java.awt.BorderLayout());
 
-        MenuIcon.setBackground(new java.awt.Color(15, 29, 52));
+        MenuIcon.setBackground(new java.awt.Color(0, 0, 0));
         MenuIcon.setPreferredSize(new java.awt.Dimension(50, 500));
         MenuIcon.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -277,10 +284,10 @@ public class GovernmentCoordinatorWorkAreaJPanel extends javax.swing.JPanel {
 
         menu.add(MenuIcon, java.awt.BorderLayout.LINE_START);
 
-        menuhide.setBackground(new java.awt.Color(25, 29, 74));
+        menuhide.setBackground(new java.awt.Color(31, 31, 31));
         menuhide.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel5.setBackground(new java.awt.Color(25, 29, 74));
+        jPanel5.setBackground(new java.awt.Color(31, 31, 31));
 
         BtnCuredPatients.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         BtnCuredPatients.setForeground(new java.awt.Color(255, 255, 255));
@@ -316,7 +323,7 @@ public class GovernmentCoordinatorWorkAreaJPanel extends javax.swing.JPanel {
 
         menuhide.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 220, 50));
 
-        jPanel11.setBackground(new java.awt.Color(25, 29, 74));
+        jPanel11.setBackground(new java.awt.Color(31, 31, 31));
 
         BtnSelfProfile.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         BtnSelfProfile.setForeground(new java.awt.Color(255, 255, 255));
@@ -333,7 +340,7 @@ public class GovernmentCoordinatorWorkAreaJPanel extends javax.swing.JPanel {
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 230, Short.MAX_VALUE)
             .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel11Layout.createSequentialGroup()
                     .addContainerGap()
@@ -352,7 +359,7 @@ public class GovernmentCoordinatorWorkAreaJPanel extends javax.swing.JPanel {
 
         menuhide.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 220, -1));
 
-        jPanel12.setBackground(new java.awt.Color(25, 29, 74));
+        jPanel12.setBackground(new java.awt.Color(31, 31, 31));
 
         BtnCreateDonor.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         BtnCreateDonor.setForeground(new java.awt.Color(255, 255, 255));
@@ -369,7 +376,7 @@ public class GovernmentCoordinatorWorkAreaJPanel extends javax.swing.JPanel {
         jPanel12.setLayout(jPanel12Layout);
         jPanel12Layout.setHorizontalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 230, Short.MAX_VALUE)
             .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel12Layout.createSequentialGroup()
                     .addContainerGap()
@@ -388,7 +395,7 @@ public class GovernmentCoordinatorWorkAreaJPanel extends javax.swing.JPanel {
 
         menuhide.add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 220, -1));
 
-        jPanel13.setBackground(new java.awt.Color(25, 29, 74));
+        jPanel13.setBackground(new java.awt.Color(31, 31, 31));
 
         BtnDonorStatus.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         BtnDonorStatus.setForeground(new java.awt.Color(255, 255, 255));
@@ -405,7 +412,7 @@ public class GovernmentCoordinatorWorkAreaJPanel extends javax.swing.JPanel {
         jPanel13.setLayout(jPanel13Layout);
         jPanel13Layout.setHorizontalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 230, Short.MAX_VALUE)
             .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel13Layout.createSequentialGroup()
                     .addContainerGap()
@@ -424,7 +431,7 @@ public class GovernmentCoordinatorWorkAreaJPanel extends javax.swing.JPanel {
 
         menuhide.add(jPanel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 220, -1));
 
-        jPanel14.setBackground(new java.awt.Color(25, 29, 74));
+        jPanel14.setBackground(new java.awt.Color(31, 31, 31));
 
         BtnDonorRequests.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         BtnDonorRequests.setForeground(new java.awt.Color(255, 255, 255));
@@ -456,7 +463,7 @@ public class GovernmentCoordinatorWorkAreaJPanel extends javax.swing.JPanel {
 
         menuhide.add(jPanel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 260, 220, -1));
 
-        jPanel15.setBackground(new java.awt.Color(25, 29, 74));
+        jPanel15.setBackground(new java.awt.Color(31, 31, 31));
 
         jLabel9.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
@@ -491,7 +498,7 @@ public class GovernmentCoordinatorWorkAreaJPanel extends javax.swing.JPanel {
 
         add(menu, java.awt.BorderLayout.LINE_START);
 
-        userProcessContainer.setBackground(new java.awt.Color(73, 128, 242));
+        userProcessContainer.setBackground(new java.awt.Color(208, 93, 2));
         userProcessContainer.setLayout(new java.awt.CardLayout());
         add(userProcessContainer, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
@@ -571,7 +578,14 @@ public class GovernmentCoordinatorWorkAreaJPanel extends javax.swing.JPanel {
 
     private void BtnCreateDonorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnCreateDonorMouseClicked
         // TODO add your handling code here:
-        CreateDonorJPanel Profile = new CreateDonorJPanel(system);
+        CreateDonorJPanel Profile = null;
+        try {
+            Profile = new CreateDonorJPanel(system);
+        } catch (GeneralSecurityException ex) {
+            Logger.getLogger(GovernmentCoordinatorWorkAreaJPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(GovernmentCoordinatorWorkAreaJPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
         userProcessContainer.add("CreateDonorJPanel", Profile);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
