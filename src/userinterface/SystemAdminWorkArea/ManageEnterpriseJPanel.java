@@ -4,15 +4,18 @@
  */
 package userinterface.SystemAdminWorkArea;
 
+import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
+import HomePages.TableFormat;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.BorderFactory;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -22,7 +25,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
 
     private JPanel userProcessContainer;
     private EcoSystem system;
-
+    private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
     /**
      * Creates new form ManageEnterpriseJPanel
      */
@@ -31,7 +34,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         this.userProcessContainer = userProcessContainer;
         this.system = system;
         
-        
+           enterpriseJTable.getTableHeader().setDefaultRenderer(new TableFormat());
            populateTable(); 
            populateComboBox();
     }
@@ -122,11 +125,14 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         btnCreateEnterprise = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(73, 128, 242));
+        setBackground(new java.awt.Color(208, 93, 2));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         enterpriseJTable.setBackground(new java.awt.Color(0, 0, 0));
-        enterpriseJTable.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        enterpriseJTable.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(204, 255, 204)));
+        enterpriseJTable.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         enterpriseJTable.setForeground(new java.awt.Color(255, 255, 255));
         enterpriseJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -137,13 +143,17 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, true, false, true, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
+        enterpriseJTable.setGridColor(new java.awt.Color(0, 0, 0));
+        enterpriseJTable.setIntercellSpacing(new java.awt.Dimension(0, 0));
+        enterpriseJTable.setRowHeight(30);
+        enterpriseJTable.setShowVerticalLines(false);
         jScrollPane1.setViewportView(enterpriseJTable);
         if (enterpriseJTable.getColumnModel().getColumnCount() > 0) {
             enterpriseJTable.getColumnModel().getColumn(0).setResizable(false);
@@ -154,151 +164,102 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
             enterpriseJTable.getColumnModel().getColumn(5).setResizable(false);
         }
 
-        jPanel2.setBackground(new java.awt.Color(73, 128, 242));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 270, 860, 380));
+
+        jPanel2.setBackground(new java.awt.Color(208, 93, 2));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 255, 204)));
         jPanel2.setForeground(new java.awt.Color(204, 255, 204));
         jPanel2.setPreferredSize(new java.awt.Dimension(250, 400));
         jPanel2.setRequestFocusEnabled(false);
         jPanel2.setVerifyInputWhenFocusTarget(false);
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Create Enterprise");
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 14, 408, 36));
 
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Network:");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, -1, -1));
 
         networkJComboBox.setBackground(new java.awt.Color(0, 0, 0));
-        networkJComboBox.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        networkJComboBox.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         networkJComboBox.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel2.add(networkJComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 70, 163, -1));
 
-        jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Enterprise Type:");
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, -1, -1));
 
         enterpriseTypeJComboBox.setBackground(new java.awt.Color(0, 0, 0));
-        enterpriseTypeJComboBox.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        enterpriseTypeJComboBox.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         enterpriseTypeJComboBox.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel2.add(enterpriseTypeJComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(233, 110, 160, -1));
 
-        jLabel2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Name:");
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, -1, -1));
 
         txtName.setBackground(new java.awt.Color(0, 0, 0));
-        txtName.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        txtName.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         txtName.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel2.add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(234, 155, 163, -1));
 
-        jLabel4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Contact:");
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, -1, -1));
 
         txtContact.setBackground(new java.awt.Color(0, 0, 0));
-        txtContact.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        txtContact.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         txtContact.setForeground(new java.awt.Color(255, 255, 255));
         txtContact.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtContactActionPerformed(evt);
             }
         });
+        jPanel2.add(txtContact, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 250, 163, -1));
 
-        jLabel5.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Zipcode:");
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, -1, -1));
 
         txtZipCode.setBackground(new java.awt.Color(0, 0, 0));
-        txtZipCode.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        txtZipCode.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         txtZipCode.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel2.add(txtZipCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 200, 163, -1));
 
-        jLabel6.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Email:");
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, -1, -1));
 
         txtEmail.setBackground(new java.awt.Color(0, 0, 0));
-        txtEmail.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        txtEmail.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         txtEmail.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel2.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(234, 299, 163, -1));
 
+        btnCreateEnterprise.setBackground(new java.awt.Color(31, 31, 31));
+        btnCreateEnterprise.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        btnCreateEnterprise.setForeground(new java.awt.Color(255, 255, 255));
         btnCreateEnterprise.setText("Create Enterprise");
+        btnCreateEnterprise.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnCreateEnterprise.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCreateEnterpriseActionPerformed(evt);
             }
         });
+        jPanel2.add(btnCreateEnterprise, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 360, 200, 33));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(86, 86, 86)
-                .addComponent(btnCreateEnterprise)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(enterpriseTypeJComboBox, javax.swing.GroupLayout.Alignment.TRAILING, 0, 163, Short.MAX_VALUE)
-                            .addComponent(txtName, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(networkJComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtContact, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
-                        .addComponent(txtZipCode, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel3))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(4, 4, 4)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(networkJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(enterpriseTypeJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtContact, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(txtZipCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
-                .addComponent(btnCreateEnterprise)
-                .addGap(35, 35, 35))
-        );
+        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 410, 450));
 
-        jPanel3.setBackground(new java.awt.Color(23, 35, 51));
+        jPanel3.setBackground(new java.awt.Color(31, 31, 31));
         jPanel3.setPreferredSize(new java.awt.Dimension(926, 70));
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -312,7 +273,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 1546, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -323,31 +284,10 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 940, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(68, 68, 68)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(78, 78, 78)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(111, Short.MAX_VALUE))
-        );
+        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1570, -1));
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/src/Images/buildings.png"))); // NOI18N
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 110, 130, 140));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCreateEnterpriseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateEnterpriseActionPerformed
@@ -356,6 +296,31 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         Enterprise.EnterpriseType type = (Enterprise.EnterpriseType) enterpriseTypeJComboBox.getSelectedItem();
         String check1 = "";
 
+        
+        if(networkJComboBox.getSelectedItem().equals(null)){
+            
+            
+            //JOptionPane.showMessageDialog(null, "Select a Network Please!");
+            networkJComboBox.setBorder(BorderFactory.createLineBorder(Color.RED));
+            networkJComboBox.setForeground(Color.red);
+            
+            JOptionPane.showMessageDialog(null, new JLabel(  "<html><h2><I>Select a<font color='red'> Network</font> please!</I></h2></html>"), "Warning", JOptionPane.WARNING_MESSAGE);
+            
+            
+            check1 = "no";
+        }
+        
+        if(enterpriseTypeJComboBox.getSelectedItem().equals(null)){
+            //JOptionPane.showMessageDialog(null, "Select Enterprise Type Please!");
+            enterpriseTypeJComboBox.setBorder(BorderFactory.createLineBorder(Color.RED));
+            enterpriseTypeJComboBox.setForeground(Color.red);
+            
+            JOptionPane.showMessageDialog(null, new JLabel(  "<html><h2><I>Select an<font color='red'> Enterprise Type</font> please!</I></h2></html>"), "Warning", JOptionPane.WARNING_MESSAGE);
+            
+            check1 = "no";
+        }
+        
+        
         if(txtName.getText().isEmpty())
         {
         txtName.setBorder(BorderFactory.createLineBorder(Color.RED));
@@ -382,23 +347,44 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         
         if(txtName.getText().isEmpty() || txtContact.getText().isEmpty() || txtEmail.getText().isEmpty() || txtZipCode.getText().isEmpty()
                 || network == null || type == null){
-            JOptionPane.showMessageDialog(null, "All fields are mandatory!");
+            //JOptionPane.showMessageDialog(null, "All fields are mandatory!");
+            JOptionPane.showMessageDialog(null,new JLabel(  "<html><h2><I>All fields are</I><font color='red'> mandatory</font>!</h2></html>") , "Error", JOptionPane.ERROR_MESSAGE);
+            
             check1 = "no";
-            return;
+            //return;
         }
 
         
-        else   if ( !phoneNumberValidator(txtContact.getText())  || !zipCodeValidator(txtZipCode.getText()) ){
-           JOptionPane.showMessageDialog(null, "Contact number should be 10 digit and Zip should be 5 digit" , "Error", JOptionPane.ERROR_MESSAGE);
+        else   if ( !phoneNumberValidator(txtContact.getText())  ){
+           //JOptionPane.showMessageDialog(null, "Contact number should be 10 digit " , "Error", JOptionPane.ERROR_MESSAGE);
            check1 = "no";
-           return;
+            txtContact.setBorder(BorderFactory.createLineBorder(Color.RED));
+            txtContact.setForeground(Color.red);
+            
+           JOptionPane.showMessageDialog(null, new JLabel("<html><h2><font color='red'><I>Contact Number</I></font> should be<font color='green'> 10 digit</font>!</h2></html>") , "Error", JOptionPane.ERROR_MESSAGE);
+            
+       //    return;
         }
-        //txtContact.getText().length() != 10 || txtZipCode.getText().length() != 5 
-  
-        else   if ( !emailValidator(txtEmail.getText()) ){
-           JOptionPane.showMessageDialog(null, "Email ID must be in correct format!" , "Error", JOptionPane.ERROR_MESSAGE);
+       
+        else   if (  !zipCodeValidator(txtZipCode.getText()) ){
+           //JOptionPane.showMessageDialog(null, " Zip should be 5 digit" , "Error", JOptionPane.ERROR_MESSAGE);
            check1 = "no";
-           return;
+           txtZipCode.setBorder(BorderFactory.createLineBorder(Color.RED));
+           txtZipCode.setForeground(Color.red);
+           
+           JOptionPane.showMessageDialog(null, new JLabel("<html><h2><font color='red'><I>Zip</I></font> should be<font color='green'> 5 digit</font>!</h2></html>") , "Error", JOptionPane.ERROR_MESSAGE);
+           
+         //  return;
+        }
+        
+        else   if ( !emailValidator(txtEmail.getText()) ){
+           //JOptionPane.showMessageDialog(null, "Email ID must be in correct format!" , "Error", JOptionPane.ERROR_MESSAGE);
+           check1 = "no";
+            txtEmail.setBorder(BorderFactory.createLineBorder(Color.RED));
+            txtEmail.setForeground(Color.red);
+            JOptionPane.showMessageDialog(null, new JLabel("<html><h2><font color='red'><I>Email ID</I></font> must be in<font color='green'> correct format</font>!</h2></html>") , "Error", JOptionPane.ERROR_MESSAGE);
+
+           //return;
         } 
          
         else {
@@ -406,8 +392,10 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
             for (Enterprise ent : network.getEnterpriseDirectory().getEnterpriseList()) {
        
                 if (ent.getName().equals(txtName.getText())) {
-                    JOptionPane.showMessageDialog(null, "Enterprise Name cannot be same!" , "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, new JLabel("<html><h2><font color='red'><I>Enterprise Name</I></font> can not be<font color='red'> same</font>!</h2></html>") , "Error", JOptionPane.ERROR_MESSAGE);
                     check1 = "no";
+                    txtName.setBorder(BorderFactory.createLineBorder(Color.RED));
+                    txtName.setForeground(Color.red);
                     return;
                 }
             }
@@ -424,9 +412,12 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
 
             populateTable();
         
-            JOptionPane.showMessageDialog(null, "New Enterprise Created Successfully!");
+            JOptionPane.showMessageDialog(null, new JLabel("<html><h2><I>New Enterprise</I><font color='green'> created </font><I>successfully!/I<></h2></html>"));
+                    
+            //JOptionPane.showMessageDialog(null, "New Enterprise Created Successfully!");
         
-        
+             dB4OUtil.storeSystem(system);
+             
             txtName.setText("");
             txtContact.setText("");
             txtZipCode.setText("");
@@ -451,6 +442,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;

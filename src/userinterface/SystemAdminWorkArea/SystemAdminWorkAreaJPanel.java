@@ -116,14 +116,14 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         panelSysadminWorkContainer = new javax.swing.JPanel();
 
-        setPreferredSize(new java.awt.Dimension(800, 500));
+        setPreferredSize(new java.awt.Dimension(1200, 900));
         setLayout(new java.awt.BorderLayout());
 
         Header.setBackground(new java.awt.Color(15, 29, 52));
         Header.setPreferredSize(new java.awt.Dimension(800, 50));
-        Header.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        Header.setLayout(new java.awt.BorderLayout());
 
-        jPanel1.setBackground(new java.awt.Color(15, 29, 52));
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
         jPanel1.setPreferredSize(new java.awt.Dimension(150, 50));
 
         BtnClose.setBackground(new java.awt.Color(15, 29, 52));
@@ -199,7 +199,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 23, Short.MAX_VALUE)
+                .addGap(0, 721, Short.MAX_VALUE)
                 .addComponent(BtnMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(BtnClose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -213,14 +213,14 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        Header.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 0, 130, 50));
+        Header.add(jPanel1, java.awt.BorderLayout.CENTER);
 
         add(Header, java.awt.BorderLayout.PAGE_START);
 
         menu.setPreferredSize(new java.awt.Dimension(270, 500));
         menu.setLayout(new java.awt.BorderLayout());
 
-        MenuIcon.setBackground(new java.awt.Color(15, 29, 52));
+        MenuIcon.setBackground(new java.awt.Color(0, 0, 0));
         MenuIcon.setPreferredSize(new java.awt.Dimension(50, 500));
         MenuIcon.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -278,10 +278,10 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         menu.add(MenuIcon, java.awt.BorderLayout.LINE_START);
 
-        panelSysadminControl.setBackground(new java.awt.Color(25, 29, 74));
+        panelSysadminControl.setBackground(new java.awt.Color(31, 31, 31));
         panelSysadminControl.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel8.setBackground(new java.awt.Color(25, 29, 74));
+        jPanel8.setBackground(new java.awt.Color(31, 31, 31));
 
         BtnManageNetwork.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         BtnManageNetwork.setForeground(new java.awt.Color(255, 255, 255));
@@ -317,7 +317,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         panelSysadminControl.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 220, 50));
 
-        jPanel9.setBackground(new java.awt.Color(25, 29, 74));
+        jPanel9.setBackground(new java.awt.Color(31, 31, 31));
 
         BtnManageEnterprise.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         BtnManageEnterprise.setForeground(new java.awt.Color(255, 255, 255));
@@ -353,7 +353,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         panelSysadminControl.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, -1, -1));
 
-        jPanel10.setBackground(new java.awt.Color(25, 29, 74));
+        jPanel10.setBackground(new java.awt.Color(31, 31, 31));
 
         BtnManageAuthentication.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         BtnManageAuthentication.setForeground(new java.awt.Color(255, 255, 255));
@@ -389,7 +389,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         panelSysadminControl.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, -1, -1));
 
-        jPanel11.setBackground(new java.awt.Color(25, 29, 74));
+        jPanel11.setBackground(new java.awt.Color(31, 31, 31));
 
         BtnStatistics.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         BtnStatistics.setForeground(new java.awt.Color(255, 255, 255));
@@ -425,7 +425,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         panelSysadminControl.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, -1, -1));
 
-        jPanel12.setBackground(new java.awt.Color(25, 29, 74));
+        jPanel12.setBackground(new java.awt.Color(31, 31, 31));
 
         jLabel8.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
@@ -461,7 +461,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         add(menu, java.awt.BorderLayout.LINE_START);
 
-        panelSysadminWorkContainer.setBackground(new java.awt.Color(73, 128, 242));
+        panelSysadminWorkContainer.setBackground(new java.awt.Color(208, 93, 2));
         panelSysadminWorkContainer.setLayout(new java.awt.CardLayout());
         add(panelSysadminWorkContainer, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents

@@ -4,13 +4,16 @@
  */
 package userinterface.SystemAdminWorkArea;
 
+import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
 import Business.Network.Network;
+import HomePages.TableFormat;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.KeyEvent;
 import javax.swing.BorderFactory;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -24,6 +27,7 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
 
     private JPanel userProcessContainer;
     private EcoSystem system;
+    private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
 
     /**
      *
@@ -34,7 +38,7 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
 
         this.userProcessContainer = userProcessContainer;
         this.system = system;
-
+        networkJTable.getTableHeader().setDefaultRenderer(new TableFormat());
         populateNetworkTable();
     }
 
@@ -51,17 +55,10 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
         }
     }
     
-    
-      public static void stringValidator(KeyEvent evt, JTextField field) {
-        char c = evt.getKeyChar();
-        if (!((c >= 'A') && (c <= 'Z') || (c >= 'a') && (c <= 'z') || (c == evt.VK_SPACE)
-                || (c == evt.VK_BACK_SPACE)
-                || (c == evt.VK_DELETE))) {
-
-            JOptionPane.showMessageDialog(null, "Enter Alphabets only");
-            field.setText(field.getText().substring(0, field.getText().length()-1));
+    public boolean isAlpha(String name) {
+    return name.matches("[a-zA-Z]+");
         }
-    }
+     
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -85,14 +82,16 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(73, 128, 242));
+        setBackground(new java.awt.Color(208, 93, 2));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jScrollPane1.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
 
         networkJTable.setBackground(new java.awt.Color(0, 0, 0));
-        networkJTable.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        networkJTable.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(204, 255, 204)));
+        networkJTable.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         networkJTable.setForeground(new java.awt.Color(255, 255, 255));
         networkJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -110,8 +109,12 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        networkJTable.setFocusable(false);
         networkJTable.setGridColor(new java.awt.Color(255, 255, 255));
+        networkJTable.setIntercellSpacing(new java.awt.Dimension(0, 0));
+        networkJTable.setRowHeight(30);
         networkJTable.setSelectionForeground(new java.awt.Color(204, 255, 204));
+        networkJTable.setShowVerticalLines(false);
         jScrollPane1.setViewportView(networkJTable);
         if (networkJTable.getColumnModel().getColumnCount() > 0) {
             networkJTable.getColumnModel().getColumn(0).setResizable(false);
@@ -119,111 +122,71 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
             networkJTable.getColumnModel().getColumn(2).setResizable(false);
         }
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 190, 421, 240));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 290, 790, 380));
 
-        jPanel2.setBackground(new java.awt.Color(73, 128, 242));
+        jPanel2.setBackground(new java.awt.Color(208, 93, 2));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 255, 204)));
         jPanel2.setPreferredSize(new java.awt.Dimension(250, 400));
         jPanel2.setRequestFocusEnabled(false);
         jPanel2.setVerifyInputWhenFocusTarget(false);
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Name:");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 103, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("State:");
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 152, -1, -1));
 
         txtNetWorkName.setBackground(new java.awt.Color(0, 0, 0));
-        txtNetWorkName.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        txtNetWorkName.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         txtNetWorkName.setForeground(new java.awt.Color(255, 255, 255));
         txtNetWorkName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNetWorkNameActionPerformed(evt);
             }
         });
+        jPanel2.add(txtNetWorkName, new org.netbeans.lib.awtextra.AbsoluteConstraints(198, 100, 141, -1));
 
         txtState.setBackground(new java.awt.Color(0, 0, 0));
-        txtState.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        txtState.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         txtState.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel2.add(txtState, new org.netbeans.lib.awtextra.AbsoluteConstraints(198, 149, 141, -1));
 
-        jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Country:");
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 200, -1, -1));
 
         txtCountry.setBackground(new java.awt.Color(0, 0, 0));
-        txtCountry.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        txtCountry.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         txtCountry.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel2.add(txtCountry, new org.netbeans.lib.awtextra.AbsoluteConstraints(198, 197, 141, -1));
 
+        btnCreateNetwork.setBackground(new java.awt.Color(31, 31, 31));
+        btnCreateNetwork.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        btnCreateNetwork.setForeground(new java.awt.Color(255, 255, 255));
         btnCreateNetwork.setText("Create Network");
+        btnCreateNetwork.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnCreateNetwork.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCreateNetworkActionPerformed(evt);
             }
         });
+        jPanel2.add(btnCreateNetwork, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 290, 180, 35));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Create Network");
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 326, 36));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(89, 89, 89)
-                .addComponent(btnCreateNetwork)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(72, 72, 72))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)))
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtState, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNetWorkName, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCountry, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(40, 40, 40))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txtNetWorkName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2)
-                    .addComponent(txtState, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtCountry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
-                .addComponent(btnCreateNetwork)
-                .addGap(55, 55, 55))
-        );
+        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 380, 440));
 
-        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 320, 410));
-
-        jPanel3.setBackground(new java.awt.Color(23, 35, 51));
+        jPanel3.setBackground(new java.awt.Color(31, 31, 31));
         jPanel3.setPreferredSize(new java.awt.Dimension(926, 70));
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -237,7 +200,7 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 904, Short.MAX_VALUE)
+                .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 1476, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -248,7 +211,10 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 928, -1));
+        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1500, -1));
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/languages.png"))); // NOI18N
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 120, 130, 130));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCreateNetworkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateNetworkActionPerformed
@@ -269,45 +235,64 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
         txtCountry.setForeground(Color.red);
         } 
         
-        
-        
-        
         String check1 = "";
         
-           if (txtNetWorkName.getText().isEmpty() || txtState.getText().isEmpty() || txtCountry.getText().isEmpty() ){
-            JOptionPane.showMessageDialog(null, "All fields are mandatory!" , "Error", JOptionPane.ERROR_MESSAGE);
+        if (txtNetWorkName.getText().isEmpty() || txtState.getText().isEmpty() || txtCountry.getText().isEmpty() ){
+            //JOptionPane.showMessageDialog(null, "All fields are mandatory!" , "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null,new JLabel(  "<html><h2><I>All fields are</I><font color='red'> mandatory</font>!</h2></html>") , "Error", JOptionPane.ERROR_MESSAGE);
+            
             return;
-      }
-           else{
-               
-       for ( Network network :system.getNetworkList()){
-      
-      if( network.getName().equals(txtNetWorkName.getText())) {
-       JOptionPane.showMessageDialog(null, "Network name cannot be same!" , "Error", JOptionPane.ERROR_MESSAGE);
-       check1 = "no";
-       return;       
-      }
-       
-      }
-       if( check1.equals("no"))
-               {}
-               else{
-               
-               
+        }
+        else{
+        for ( Network network :system.getNetworkList()){
+        if( network.getName().equals(txtNetWorkName.getText())) {
+        JOptionPane.showMessageDialog(null, new JLabel("<html><h2><font color='red'><I>Network Name</I></font> can not be <font color='red'>same</font>!</h2></html>") , "Error", JOptionPane.ERROR_MESSAGE);
+                    
+        //JOptionPane.showMessageDialog(null, "Network name cannot be same!" , "Error", JOptionPane.ERROR_MESSAGE);
+        check1 = "no";
+        return;       
+        }}
+        if(!isAlpha(txtState.getText()))
+        {
+              //JOptionPane.showMessageDialog(null, "State name must be all alphabets." , "Error", JOptionPane.ERROR_MESSAGE);
+              check1 = "no";
+              txtState.setBorder(BorderFactory.createLineBorder(Color.RED));
+              txtState.setForeground(Color.red);
+              
+              JOptionPane.showMessageDialog(null, new JLabel("<html><h2>Name of the<font color='red'><I> State</I></font> must contain only<font color='green'> alphabets</font>!</h2></html>") , "Error", JOptionPane.ERROR_MESSAGE);
+          
+              
+        }
+           if(!isAlpha(txtCountry.getText()))
+        {
+              //JOptionPane.showMessageDialog(null, "Country name must be all alphabets." , "Error", JOptionPane.ERROR_MESSAGE);
+              check1 = "no";
+              txtCountry.setBorder(BorderFactory.createLineBorder(Color.RED));
+              txtCountry.setForeground(Color.red);
+              JOptionPane.showMessageDialog(null, new JLabel("<html><h2>Name of the<font color='red'><I> Country</I></font> must contain only<font color='green'> alphabets</font>!</h2></html>") , "Error", JOptionPane.ERROR_MESSAGE);
+          
+        }
+        
+        
+        if( check1.equals("no")) 
+        {}
+        else
+        {             
         Network network = system.createAndAddNetwork();
         network.setName(txtNetWorkName.getText());
         network.setState(txtState.getText());
         network.setCountry(txtCountry.getText());
         populateNetworkTable();
         
+        JOptionPane.showMessageDialog(null, new JLabel("<html><h2>New <I>Network</I><font color='green'> created</font> successfully!</h2></html>") );
+          
         
-        JOptionPane.showMessageDialog(null, "New Network Created!");
-        
+        dB4OUtil.storeSystem(system);
         
         txtNetWorkName.setText("");
         txtState.setText("");
         txtCountry.setText("");
-           }  }
+        }  }
     }//GEN-LAST:event_btnCreateNetworkActionPerformed
 
     private void txtNetWorkNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNetWorkNameActionPerformed
@@ -321,6 +306,7 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;

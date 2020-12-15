@@ -5,6 +5,7 @@
  */
 package userinterface.SystemCoordinatorRole;
 
+import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
@@ -15,6 +16,8 @@ import Business.People.Patient;
 import Business.People.PatientDirectory;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.WorkRequest;
+import HomePages.TableFormat;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -34,6 +37,7 @@ public class PatientListJPanel extends javax.swing.JPanel {
     private  EcoSystem system;
     private Network network;
     private SystemCoordinatorOrganization systorganization;
+    private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
     
     public PatientListJPanel(UserAccount userAccount, EcoSystem system, Network network, SystemCoordinatorOrganization systorganization) {
         initComponents();
@@ -41,7 +45,9 @@ public class PatientListJPanel extends javax.swing.JPanel {
         this.system = system;
         this.network = network;
         this.systorganization = systorganization;
-       // populateTable();
+       
+        tblAssignment.getTableHeader().setDefaultRenderer(new TableFormat());
+        tblHospital.getTableHeader().setDefaultRenderer(new TableFormat());
         populateHospitalTable();
         populateRequestTable();
     }
@@ -76,13 +82,13 @@ public class PatientListJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         
         for(WorkRequest request : systorganization.getWorkQueue().getWorkRequestList()){
-            Object[] row = new Object[5];
+            Object[] row = new Object[6];
             row[0] = request;
             row[1] = request.getSummary();
             row[2] = request.getPatient();
             row[3] = request.getEnterprise();
             row[4] = request.getStatus();
-            
+            row[5] = request.getPatient().isEmergencyStatus();
             
             model.addRow(row);
         }
@@ -109,26 +115,35 @@ public class PatientListJPanel extends javax.swing.JPanel {
         tblAssignment = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         jLabel25 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(73, 128, 242));
+        setBackground(new java.awt.Color(208, 93, 2));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Patients In Need For Plasma Treatment (Plasma Recievers)");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 110, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Assign the Patient to a Hospital");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 390, -1, -1));
 
+        btnAssign.setBackground(new java.awt.Color(31, 31, 31));
+        btnAssign.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        btnAssign.setForeground(new java.awt.Color(255, 255, 255));
         btnAssign.setText("Assign");
+        btnAssign.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnAssign.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAssignActionPerformed(evt);
             }
         });
+        add(btnAssign, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 670, 142, 60));
 
         tblHospital.setBackground(new java.awt.Color(0, 0, 0));
-        tblHospital.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        tblHospital.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         tblHospital.setForeground(new java.awt.Color(255, 255, 255));
         tblHospital.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -137,31 +152,51 @@ public class PatientListJPanel extends javax.swing.JPanel {
             new String [] {
                 "Hospital Name"
             }
-        ));
-        jScrollPane2.setViewportView(tblHospital);
-
-        tblAssignment.setBackground(new java.awt.Color(0, 0, 0));
-        tblAssignment.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        tblAssignment.setForeground(new java.awt.Color(255, 255, 255));
-        tblAssignment.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Request Number", "Summary", "Patient UID", "Hospital Name", "Status"
-            }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
+        tblHospital.setGridColor(new java.awt.Color(0, 0, 0));
+        tblHospital.setIntercellSpacing(new java.awt.Dimension(0, 0));
+        tblHospital.setRowHeight(30);
+        tblHospital.setShowVerticalLines(false);
+        jScrollPane2.setViewportView(tblHospital);
+
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 450, 810, 200));
+
+        tblAssignment.setBackground(new java.awt.Color(0, 0, 0));
+        tblAssignment.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
+        tblAssignment.setForeground(new java.awt.Color(255, 255, 255));
+        tblAssignment.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Request Number", "Summary", "Patient UID", "Hospital Name", "Status", "Emergency"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblAssignment.setGridColor(new java.awt.Color(0, 0, 0));
+        tblAssignment.setIntercellSpacing(new java.awt.Dimension(0, 0));
+        tblAssignment.setRowHeight(30);
+        tblAssignment.setShowVerticalLines(false);
         jScrollPane4.setViewportView(tblAssignment);
 
-        jPanel3.setBackground(new java.awt.Color(23, 35, 51));
+        add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 1140, 200));
+
+        jPanel3.setBackground(new java.awt.Color(31, 31, 31));
         jPanel3.setPreferredSize(new java.awt.Dimension(926, 70));
 
         jLabel25.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -175,7 +210,7 @@ public class PatientListJPanel extends javax.swing.JPanel {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel25, javax.swing.GroupLayout.DEFAULT_SIZE, 902, Short.MAX_VALUE)
+                .addComponent(jLabel25, javax.swing.GroupLayout.DEFAULT_SIZE, 1616, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -186,105 +221,69 @@ public class PatientListJPanel extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(140, 140, 140)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(368, 368, 368)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(28, 28, 28)
-                                .addComponent(btnAssign))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(271, 271, 271)
-                        .addComponent(jLabel2)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 842, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34))
-                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(60, 60, 60)
-                .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
-                .addComponent(btnAssign)
-                .addContainerGap(35, Short.MAX_VALUE))
-        );
+        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 0, 1640, -1));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/patient.png"))); // NOI18N
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1190, 440, -1, 144));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAssignActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignActionPerformed
         // TODO add your handling code here:
-         int row = tblAssignment.getSelectedRow();
-        if (row < 0) {
-            JOptionPane.showMessageDialog(null, "Please select a row from the Request table", "Warning", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-        
+        int row = tblAssignment.getSelectedRow();
         int row1 = tblHospital.getSelectedRow();
+        if (row < 0) {
+            //JOptionPane.showMessageDialog(null, "Please select a row from the Request table", "Warning", JOptionPane.WARNING_MESSAGE);
+            //return;
+            JOptionPane.showMessageDialog(null, new JLabel(  "<html><h2><I>Please select<font color='red'> a row</font> from the<font color='green'> Request Table</I></font></h2></html>"), "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
         if (row1 < 0) {
-            JOptionPane.showMessageDialog(null, "Please select a row from the Hospital table", "Warning", JOptionPane.WARNING_MESSAGE);
+            //JOptionPane.showMessageDialog(null, "Please select a row from the Hospital table", "Warning", JOptionPane.WARNING_MESSAGE);
+            //return;
+            JOptionPane.showMessageDialog(null, new JLabel(  "<html><h2><I>Please select<font color='red'> a row</font> from the<font color='green'> Hospital Table</I></font></h2></html>"), "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
         
+        else{
+            WorkRequest request = (WorkRequest)tblAssignment.getValueAt(row, 0);   
+            if(request.getStatus().equals("PlasmaBank Approved. Passing to System Coordinator")){
+                    
+                    request.setEnterprise((Enterprise) tblHospital.getValueAt(row1, 0));
+                    request.setStatus("Assigned in Doctor Pool");
+                    
+                    dB4OUtil.storeSystem(system);
+                    populateRequestTable();
+                    
+                    
+                    Organization org = null;
+                    Enterprise enterprise = (Enterprise) tblHospital.getValueAt(row1, 0);
+                    for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
+                            if (organization instanceof DoctorOrganization) {
+                                org = organization;
+                                break;
+                            }
+                    }
+                    if (org != null) {
+                        org.getWorkQueue().getWorkRequestList().add(request);
+                        System.out.println(org.getName());
+                        userAccount.getWorkQueue().getWorkRequestList().add(request);
+                        JOptionPane.showMessageDialog(null,
+                                new JLabel(  "<html><h2><I>Patient successfully<font color='green'> assigned</font> to the Hospital.</I></h2></html>"), 
+                                 "Info", JOptionPane.INFORMATION_MESSAGE);
+                        populateRequestTable();
+                    }
+                    else {
+                    JOptionPane.showMessageDialog(null, "No organization present", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                }   
+            else{
+                JOptionPane.showMessageDialog(null, new JLabel(  "<html><h2><I>Work Request is<font color='red'> already</font> in progress!</I></h2></html>"), "Warning", JOptionPane.WARNING_MESSAGE);
+                }
         
-        
-        WorkRequest request = (WorkRequest)tblAssignment.getValueAt(row, 0);
-            
-                request.setEnterprise((Enterprise) tblHospital.getValueAt(row1, 0));
-                request.setStatus("Assigned in Doctor Pool");
-                
-                Organization org = null;
-        Enterprise enterprise = (Enterprise) tblHospital.getValueAt(row1, 0);
-        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
-            if (organization instanceof DoctorOrganization) {
-                org = organization;
-                break;
-            }
         }
-        
-        if (org != null) {
-            org.getWorkQueue().getWorkRequestList().add(request);
-            System.out.println(org.getName());
-            userAccount.getWorkQueue().getWorkRequestList().add(request);
-            //user.addUserRequest(request);
-            JOptionPane.showMessageDialog(null,"Request Sent Successfully", "Info", JOptionPane.INFORMATION_MESSAGE);
-            populateRequestTable();
-        } else {
-        
-         JOptionPane.showMessageDialog(null, "No organization present", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-                
-            
-           
+        dB4OUtil.storeSystem(system);
         populateRequestTable();
-            
-        
-        
-        
-        
-        
-        
-        
+                
     }//GEN-LAST:event_btnAssignActionPerformed
 
 
@@ -293,6 +292,7 @@ public class PatientListJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;

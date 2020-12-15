@@ -137,9 +137,9 @@ public class SystemCoordinatorWorkAreaJPanel extends javax.swing.JPanel {
 
         Header.setBackground(new java.awt.Color(15, 29, 52));
         Header.setPreferredSize(new java.awt.Dimension(800, 50));
-        Header.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        Header.setLayout(new java.awt.BorderLayout());
 
-        jPanel1.setBackground(new java.awt.Color(15, 29, 52));
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
         jPanel1.setPreferredSize(new java.awt.Dimension(150, 50));
 
         BtnClose.setBackground(new java.awt.Color(15, 29, 52));
@@ -213,7 +213,7 @@ public class SystemCoordinatorWorkAreaJPanel extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 43, Short.MAX_VALUE)
+                .addGap(0, 953, Short.MAX_VALUE)
                 .addComponent(BtnMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(BtnClose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -227,14 +227,14 @@ public class SystemCoordinatorWorkAreaJPanel extends javax.swing.JPanel {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        Header.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 0, -1, 50));
+        Header.add(jPanel1, java.awt.BorderLayout.CENTER);
 
         add(Header, java.awt.BorderLayout.PAGE_START);
 
         menu.setPreferredSize(new java.awt.Dimension(270, 500));
         menu.setLayout(new java.awt.BorderLayout());
 
-        jPanel2.setBackground(new java.awt.Color(15, 29, 52));
+        jPanel2.setBackground(new java.awt.Color(0, 0, 0));
         jPanel2.setPreferredSize(new java.awt.Dimension(50, 500));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -293,11 +293,11 @@ public class SystemCoordinatorWorkAreaJPanel extends javax.swing.JPanel {
 
         menu.add(jPanel2, java.awt.BorderLayout.LINE_START);
 
-        jPanel3.setBackground(new java.awt.Color(25, 29, 74));
+        jPanel3.setBackground(new java.awt.Color(31, 31, 31));
         jPanel3.setPreferredSize(new java.awt.Dimension(220, 500));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel9.setBackground(new java.awt.Color(25, 29, 74));
+        jPanel9.setBackground(new java.awt.Color(31, 31, 31));
 
         BtnDonorList.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         BtnDonorList.setForeground(new java.awt.Color(255, 255, 255));
@@ -333,7 +333,7 @@ public class SystemCoordinatorWorkAreaJPanel extends javax.swing.JPanel {
 
         jPanel3.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 220, 50));
 
-        jPanel10.setBackground(new java.awt.Color(25, 29, 74));
+        jPanel10.setBackground(new java.awt.Color(31, 31, 31));
 
         BtnPatientsList.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         BtnPatientsList.setForeground(new java.awt.Color(255, 255, 255));
@@ -369,7 +369,7 @@ public class SystemCoordinatorWorkAreaJPanel extends javax.swing.JPanel {
 
         jPanel3.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, -1, -1));
 
-        jPanel11.setBackground(new java.awt.Color(25, 29, 74));
+        jPanel11.setBackground(new java.awt.Color(31, 31, 31));
 
         BtnManageDonorRequests.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         BtnManageDonorRequests.setForeground(new java.awt.Color(255, 255, 255));
@@ -405,7 +405,8 @@ public class SystemCoordinatorWorkAreaJPanel extends javax.swing.JPanel {
 
         jPanel3.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, -1, -1));
 
-        jPanel12.setBackground(new java.awt.Color(25, 29, 74));
+        jPanel12.setBackground(new java.awt.Color(31, 31, 31));
+        jPanel12.setForeground(new java.awt.Color(31, 31, 31));
 
         BtnManagePatientRequests.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         BtnManagePatientRequests.setForeground(new java.awt.Color(255, 255, 255));
@@ -441,7 +442,7 @@ public class SystemCoordinatorWorkAreaJPanel extends javax.swing.JPanel {
 
         jPanel3.add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 260, -1, -1));
 
-        jPanel13.setBackground(new java.awt.Color(25, 29, 74));
+        jPanel13.setBackground(new java.awt.Color(31, 31, 31));
 
         BtnProfile.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         BtnProfile.setForeground(new java.awt.Color(255, 255, 255));
@@ -477,7 +478,7 @@ public class SystemCoordinatorWorkAreaJPanel extends javax.swing.JPanel {
 
         jPanel3.add(jPanel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 350, -1, -1));
 
-        jPanel14.setBackground(new java.awt.Color(25, 29, 74));
+        jPanel14.setBackground(new java.awt.Color(31, 31, 31));
 
         jLabel9.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
@@ -513,7 +514,7 @@ public class SystemCoordinatorWorkAreaJPanel extends javax.swing.JPanel {
 
         add(menu, java.awt.BorderLayout.LINE_START);
 
-        userProcessContainer.setBackground(new java.awt.Color(73, 128, 242));
+        userProcessContainer.setBackground(new java.awt.Color(208, 93, 2));
         userProcessContainer.setLayout(new java.awt.CardLayout());
         add(userProcessContainer, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
