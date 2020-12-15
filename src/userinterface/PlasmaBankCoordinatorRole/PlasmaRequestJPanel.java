@@ -43,7 +43,8 @@ public class PlasmaRequestJPanel extends javax.swing.JPanel {
         this.enterprise = enterprise;
         this.network = network;
         this.system = system;
-        
+         
+        jPanel1.setVisible(false);
         tblPlasmaCoordinator.getTableHeader().setDefaultRenderer(new TableFormat());
         populateTextFields();
         populatePlasmaCoordinatorTable();
@@ -156,7 +157,8 @@ public class PlasmaRequestJPanel extends javax.swing.JPanel {
         jPanel3 = new javax.swing.JPanel();
         jLabel25 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(208, 93, 2));
         setForeground(new java.awt.Color(255, 255, 255));
@@ -172,13 +174,13 @@ public class PlasmaRequestJPanel extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Blood Group Category");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 340, -1, -1));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 340, -1, -1));
 
         jLabel4.setBackground(new java.awt.Color(0, 0, 0));
         jLabel4.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Available Blood Groups");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 340, -1, -1));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 340, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -205,7 +207,7 @@ public class PlasmaRequestJPanel extends javax.swing.JPanel {
                 btnApproveActionPerformed(evt);
             }
         });
-        add(btnApprove, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 610, 210, 40));
+        add(btnApprove, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 590, 210, 40));
 
         jLabel7.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -287,7 +289,7 @@ public class PlasmaRequestJPanel extends javax.swing.JPanel {
                 btnOnHoldActionPerformed(evt);
             }
         });
-        add(btnOnHold, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 600, 190, 40));
+        add(btnOnHold, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 590, 190, 40));
 
         tblPlasmaCoordinator.setBackground(new java.awt.Color(0, 0, 0));
         tblPlasmaCoordinator.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
@@ -312,6 +314,11 @@ public class PlasmaRequestJPanel extends javax.swing.JPanel {
         tblPlasmaCoordinator.setIntercellSpacing(new java.awt.Dimension(0, 0));
         tblPlasmaCoordinator.setRowHeight(30);
         tblPlasmaCoordinator.setShowVerticalLines(false);
+        tblPlasmaCoordinator.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblPlasmaCoordinatorMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tblPlasmaCoordinator);
 
         add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, 1270, 200));
@@ -346,12 +353,29 @@ public class PlasmaRequestJPanel extends javax.swing.JPanel {
         jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/src/Images/blood-bank.png"))); // NOI18N
         add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 440, 130, -1));
 
-        jButton1.setBackground(new java.awt.Color(31, 31, 31));
-        jButton1.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("IN CASE OF PLASMA UNAVAILABILITY - NOTIFY SYSTEM COORDINATOR");
-        jButton1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 700, 730, 40));
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+
+        jLabel6.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/src/Images/emergency.gif"))); // NOI18N
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 586, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 154, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 650, 610, 180));
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtApositiveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApositiveActionPerformed
@@ -443,11 +467,40 @@ public class PlasmaRequestJPanel extends javax.swing.JPanel {
         
     }//GEN-LAST:event_btnOnHoldActionPerformed
 
+    private void tblPlasmaCoordinatorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPlasmaCoordinatorMouseClicked
+        // TODO add your handling code here:
+        
+        int selectedRow = tblPlasmaCoordinator.getSelectedRow();
+        
+        if (selectedRow < 0){   
+            //JOptionPane.showMessageDialog(null, new JLabel(  "<html><h2><I>Please select<font color='red'> a row</font> from the<font color='green'> table!</I></font></h2></html>"), "Warning", JOptionPane.WARNING_MESSAGE);
+             return;
+        }
+         else{
+            WorkRequest request = (WorkRequest)tblPlasmaCoordinator.getValueAt(selectedRow, 0);
+            if(request.getStatus().equals("Legally Approved. Passing to PlasmaBank")){
+                //request.setStatus("On Hold Due to Plasma unavailability");
+                if(request.getPatient().isEmergencyStatus() == true){
+                jPanel1.setVisible(true);
+                }
+                //dB4OUtil.storeSystem(system);
+                //populatePlasmaCoordinatorTable();   
+            }
+            else{
+              //JOptionPane.showMessageDialog(null, new JLabel("<html><h2><I>Work Request is<font color='red'> already</font> in progress!</I></h2></html>"), "Warning", JOptionPane.WARNING_MESSAGE);
+                 jPanel1.setVisible(false);
+              //  JOptionPane.showMessageDialog(null, "Work Request is already in progress!" ); 
+            }
+        }
+        
+        
+        
+    }//GEN-LAST:event_tblPlasmaCoordinatorMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnApprove;
     private javax.swing.JButton btnOnHold;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -459,9 +512,11 @@ public class PlasmaRequestJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tblPlasmaCoordinator;
