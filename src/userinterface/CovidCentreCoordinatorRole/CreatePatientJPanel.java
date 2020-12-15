@@ -5,6 +5,7 @@
  */
 package userinterface.CovidCentreCoordinatorRole;
 
+import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
@@ -15,7 +16,12 @@ import Business.People.PatientDirectory;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.SystemCoordinatorTestWorkRequest;
 import Business.WorkQueue.WorkRequest;
+import HomePages.TableFormat;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Date;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -34,6 +40,7 @@ public class CreatePatientJPanel extends javax.swing.JPanel {
     private  EcoSystem system;
      private UserAccount userAccount;
      private Network network;
+     private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
 
     CreatePatientJPanel(EcoSystem system, UserAccount userAccount, Network network) {
         initComponents();
@@ -43,13 +50,44 @@ public class CreatePatientJPanel extends javax.swing.JPanel {
         this.userAccount = userAccount;
         this.network = network;
         populateTable();
+        populatePatientTable();
+        
+        tblPatient.getTableHeader().setDefaultRenderer(new TableFormat());
+        tblRequest.getTableHeader().setDefaultRenderer(new TableFormat());
+        
+    }
+    
+    private void populatePatientTable(){
+    DefaultTableModel dtmA = (DefaultTableModel)tblPatient.getModel();
+      dtmA.setRowCount(0);
+      Object row[] = new Object[5];
+       String line = "";  
+       String splitBy = ",";  
+        try   
+        {  
+            //parsing a CSV file into BufferedReader class constructor  
+            BufferedReader br = new BufferedReader(new FileReader("PatientsRecord.csv"));  
+            while ((line = br.readLine()) != null)   //returns a Boolean value  
+            {
+            String[] csv = line.split(splitBy);    // use comma as separator 
+            row[0]= csv[0];
+            row[1]= csv[1];
+            row[2]= csv[2];
+            row[3]= csv[3];
+            row[4]= csv[4];
+            
+            dtmA.addRow(row);
+        }   }
+            catch (IOException e)   
+            {  e.printStackTrace(); }   
+    
+    
     }
     
      private void populateTable(){
         DefaultTableModel dtm = (DefaultTableModel) tblRequest.getModel();
         
         dtm.setRowCount(0);
-        
         
 
         for (WorkRequest request : userAccount.getWorkQueue().getWorkRequestList()) {
@@ -58,7 +96,7 @@ public class CreatePatientJPanel extends javax.swing.JPanel {
             
             row[1] = request.getSummary();
             row[2] = request.getPatient();
-            row[3] = request.getPatient().getContact();
+            row[3] = request.getPatient().getEmailID();
             row[4] = request.getStatus();
             row[5] = request.getActionDate();
             dtm.addRow(row);
@@ -77,97 +115,136 @@ public class CreatePatientJPanel extends javax.swing.JPanel {
 
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        nameTextField = new javax.swing.JTextField();
-        contactTextField = new javax.swing.JTextField();
+        uidTextField = new javax.swing.JTextField();
+        emailTextField = new javax.swing.JTextField();
         btnCreateReceiver = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblPatient = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jButton2 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblRequest = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         jLabel25 = new javax.swing.JLabel();
+        chkEmergency = new javax.swing.JCheckBox();
+        jLabel6 = new javax.swing.JLabel();
+        nameTextField = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        bloodGroupTextField = new javax.swing.JTextField();
 
-        setBackground(new java.awt.Color(73, 128, 242));
+        setBackground(new java.awt.Color(208, 93, 2));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Name");
+        jLabel2.setText("UID");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 440, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Contact");
+        jLabel3.setText("Email");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 480, -1, -1));
 
-        nameTextField.setBackground(new java.awt.Color(0, 0, 0));
-        nameTextField.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        nameTextField.setForeground(new java.awt.Color(255, 255, 255));
+        uidTextField.setBackground(new java.awt.Color(0, 0, 0));
+        uidTextField.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
+        uidTextField.setForeground(new java.awt.Color(255, 255, 255));
+        uidTextField.setEnabled(false);
+        add(uidTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 440, 212, -1));
 
-        contactTextField.setBackground(new java.awt.Color(0, 0, 0));
-        contactTextField.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        contactTextField.setForeground(new java.awt.Color(255, 255, 255));
+        emailTextField.setBackground(new java.awt.Color(0, 0, 0));
+        emailTextField.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
+        emailTextField.setForeground(new java.awt.Color(255, 255, 255));
+        emailTextField.setEnabled(false);
+        add(emailTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 480, 212, -1));
 
+        btnCreateReceiver.setBackground(new java.awt.Color(31, 31, 31));
+        btnCreateReceiver.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
+        btnCreateReceiver.setForeground(new java.awt.Color(255, 255, 255));
         btnCreateReceiver.setText("Create Receiver/Patient");
+        btnCreateReceiver.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnCreateReceiver.setEnabled(false);
         btnCreateReceiver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCreateReceiverActionPerformed(evt);
             }
         });
+        add(btnCreateReceiver, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 520, 250, 40));
 
-        jLabel4.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Create Reciever's Profile");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 390, -1, -1));
 
-        jTable1.setBackground(new java.awt.Color(0, 0, 0));
-        jTable1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jTable1.setForeground(new java.awt.Color(255, 255, 255));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblPatient.setBackground(new java.awt.Color(0, 0, 0));
+        tblPatient.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
+        tblPatient.setForeground(new java.awt.Color(255, 255, 255));
+        tblPatient.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "UID", "Name", "Email", "Covid Diagnosed Date", "Blood Group"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
 
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblPatient.setFocusable(false);
+        tblPatient.setGridColor(new java.awt.Color(0, 0, 0));
+        tblPatient.setIntercellSpacing(new java.awt.Dimension(0, 0));
+        tblPatient.setRowHeight(30);
+        tblPatient.setShowVerticalLines(false);
+        jScrollPane1.setViewportView(tblPatient);
+
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, 1300, 230));
+
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("List Of Covid Patients In The Network Area Of The Coordinator");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 100, -1, -1));
 
-        jLabel5.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("List Of Recievers");
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.setText("Photo");
-        jScrollPane3.setViewportView(jTextArea1);
-
-        jButton2.setText("Add photo");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 580, -1, -1));
 
         tblRequest.setBackground(new java.awt.Color(0, 0, 0));
-        tblRequest.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        tblRequest.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         tblRequest.setForeground(new java.awt.Color(255, 255, 255));
         tblRequest.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Request Number", "Summary", "Patient Name", "Contact", "Status", "Date"
+                "Request Number", "Summary", "Patient Name", "Email ID", "Status", "Date"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblRequest.setFocusable(false);
+        tblRequest.setGridColor(new java.awt.Color(0, 0, 0));
+        tblRequest.setIntercellSpacing(new java.awt.Dimension(0, 0));
+        tblRequest.setRowHeight(30);
+        tblRequest.setShowVerticalLines(false);
         jScrollPane2.setViewportView(tblRequest);
 
-        jPanel3.setBackground(new java.awt.Color(23, 35, 51));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 620, 1310, 220));
+
+        jPanel3.setBackground(new java.awt.Color(31, 31, 31));
         jPanel3.setPreferredSize(new java.awt.Dimension(926, 70));
 
         jLabel25.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -181,7 +258,7 @@ public class CreatePatientJPanel extends javax.swing.JPanel {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel25, javax.swing.GroupLayout.DEFAULT_SIZE, 902, Short.MAX_VALUE)
+                .addComponent(jLabel25, javax.swing.GroupLayout.DEFAULT_SIZE, 1656, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -192,95 +269,69 @@ public class CreatePatientJPanel extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(169, 169, 169)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addGap(67, 67, 67)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(nameTextField)
-                            .addComponent(contactTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel4)
-                        .addGap(221, 221, 221)))
-                .addGap(83, 83, 83))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(btnCreateReceiver)
-                            .addGap(366, 366, 366))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addGap(101, 101, 101))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel5)
-                            .addGap(354, 354, 354)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 879, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 851, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addComponent(jLabel4)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(32, 32, 32)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(contactTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2)
-                            .addGap(37, 37, 37))
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(37, 37, 37)
-                .addComponent(btnCreateReceiver)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel5)
-                .addGap(27, 27, 27)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43))
-        );
+        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1680, -1));
+
+        chkEmergency.setBackground(new java.awt.Color(31, 31, 31));
+        chkEmergency.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
+        chkEmergency.setForeground(new java.awt.Color(255, 255, 255));
+        chkEmergency.setText("Emergency");
+        chkEmergency.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        chkEmergency.setEnabled(false);
+        add(chkEmergency, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 530, -1, -1));
+
+        jLabel6.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Name");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 440, -1, -1));
+
+        nameTextField.setBackground(new java.awt.Color(0, 0, 0));
+        nameTextField.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
+        nameTextField.setForeground(new java.awt.Color(255, 255, 255));
+        nameTextField.setEnabled(false);
+        add(nameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 440, 212, -1));
+
+        jButton2.setBackground(new java.awt.Color(31, 31, 31));
+        jButton2.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("See Details");
+        jButton2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 390, 130, 40));
+
+        jLabel8.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("Blood Group");
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 480, -1, -1));
+
+        bloodGroupTextField.setBackground(new java.awt.Color(0, 0, 0));
+        bloodGroupTextField.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
+        bloodGroupTextField.setForeground(new java.awt.Color(255, 255, 255));
+        bloodGroupTextField.setEnabled(false);
+        add(bloodGroupTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 480, 210, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCreateReceiverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateReceiverActionPerformed
         // TODO add your handling code here:
+        
         Patient patient = system.getPatientDirectory().addPatient();
+        
+        patient.setReceiverID(uidTextField.getText());
         patient.setName(nameTextField.getText());
-        patient.setContact(Integer.parseInt(contactTextField.getText()));
-
+        patient.setEmailID((emailTextField.getText()));
+        patient.setBloodGroup(bloodGroupTextField.getText());
+        patient.setEmergencyStatus(chkEmergency.isSelected());
+        patient.setStatus("Centre Approved");
+        
+        
+        
         populateTable();
-        JOptionPane.showMessageDialog(null,"new patient has been added!");
+         JOptionPane.showMessageDialog(null, new JLabel(  "<html><h2><I>A new Patinet has been <font color='green'>added</font></I></h2></html>"));
+           
+        //JOptionPane.showMessageDialog(null,"New patient has been added!");
         
         WorkRequest request = new SystemCoordinatorTestWorkRequest();
         
@@ -318,22 +369,63 @@ public class CreatePatientJPanel extends javax.swing.JPanel {
             System.out.println(org.getName());
             userAccount.getWorkQueue().getWorkRequestList().add(request);
             //user.addUserRequest(request);
-            JOptionPane.showMessageDialog(null,"Request Sent Successfully", "Info", JOptionPane.INFORMATION_MESSAGE);
+            
+            dB4OUtil.storeSystem(system);
             populateTable();
+            //JOptionPane.showMessageDialog(null,"Request Sent Successfully", "Info", JOptionPane.INFORMATION_MESSAGE);
+             JOptionPane.showMessageDialog(null, new JLabel(  "<html><h2><I>Request has been sent for<font color='green'> Legal Approval!</I></font></h2></html>"));         
+            
         } else {
         
          JOptionPane.showMessageDialog(null, "No organization present", "Error", JOptionPane.ERROR_MESSAGE);
         }
         
-
+        chkEmergency.setEnabled(false);
+        btnCreateReceiver.setEnabled(false);
+        
+        uidTextField.setText("");
         nameTextField.setText("");
-        contactTextField.setText("");
+        emailTextField.setText("");
+        bloodGroupTextField.setText("");
     }//GEN-LAST:event_btnCreateReceiverActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+
+        int selectedRow = tblPatient.getSelectedRow();
+        
+        if(selectedRow < 0){
+            
+             JOptionPane.showMessageDialog(null, new JLabel(  "<html><h2><I>Please select<font color='red'> a row</font> from the<font color='green'> table</I></font></h2></html>"), "Warning", JOptionPane.WARNING_MESSAGE);
+           
+            
+            //JOptionPane.showMessageDialog(null,"Please select a row from the table first to View Details!","Warning!",JOptionPane.WARNING_MESSAGE);
+        }
+        else{
+
+            //String.valueOf(tblGoogleSheet.getValueAt(selectedRow, 0));
+
+            uidTextField.setText( String.valueOf(tblPatient.getValueAt(selectedRow, 0)));
+             nameTextField.setText( String.valueOf(tblPatient.getValueAt(selectedRow, 1)));
+            emailTextField.setText( String.valueOf(tblPatient.getValueAt(selectedRow, 2)));
+            
+            bloodGroupTextField.setText( String.valueOf(tblPatient.getValueAt(selectedRow, 4)));
+            
+            
+            btnCreateReceiver.setEnabled(true);
+            chkEmergency.setEnabled(true);
+            
+
+        }
+
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField bloodGroupTextField;
     private javax.swing.JButton btnCreateReceiver;
-    private javax.swing.JTextField contactTextField;
+    private javax.swing.JCheckBox chkEmergency;
+    private javax.swing.JTextField emailTextField;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -341,13 +433,14 @@ public class CreatePatientJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField nameTextField;
+    private javax.swing.JTable tblPatient;
     private javax.swing.JTable tblRequest;
+    private javax.swing.JTextField uidTextField;
     // End of variables declaration//GEN-END:variables
 }

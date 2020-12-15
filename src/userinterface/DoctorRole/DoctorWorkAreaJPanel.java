@@ -105,7 +105,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         Header = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
         ButtonClose = new javax.swing.JPanel();
         close = new javax.swing.JLabel();
         ButtonMax = new javax.swing.JPanel();
@@ -133,13 +133,12 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
 
         Header.setBackground(new java.awt.Color(15, 29, 52));
         Header.setPreferredSize(new java.awt.Dimension(800, 50));
-        Header.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        Header.setLayout(new java.awt.BorderLayout());
 
-        jPanel1.setBackground(new java.awt.Color(15, 29, 52));
-        jPanel1.setPreferredSize(new java.awt.Dimension(150, 50));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel2.setBackground(new java.awt.Color(15, 29, 52));
+        jPanel2.setLayout(new java.awt.BorderLayout());
 
-        ButtonClose.setBackground(new java.awt.Color(15, 29, 52));
+        ButtonClose.setBackground(new java.awt.Color(0, 0, 0));
         ButtonClose.setPreferredSize(new java.awt.Dimension(50, 50));
 
         close.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -156,24 +155,10 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        javax.swing.GroupLayout ButtonCloseLayout = new javax.swing.GroupLayout(ButtonClose);
-        ButtonClose.setLayout(ButtonCloseLayout);
-        ButtonCloseLayout.setHorizontalGroup(
-            ButtonCloseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ButtonCloseLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(close, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        ButtonCloseLayout.setVerticalGroup(
-            ButtonCloseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(close, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-        );
-
-        jPanel1.add(ButtonClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, -1, 50));
-
         ButtonMax.setBackground(new java.awt.Color(15, 29, 52));
         ButtonMax.setPreferredSize(new java.awt.Dimension(50, 50));
 
+        fullmax.setBackground(new java.awt.Color(0, 0, 0));
         fullmax.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         fullmax.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/full_screen_32px.png"))); // NOI18N
         fullmax.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -192,27 +177,52 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         ButtonMax.setLayout(ButtonMaxLayout);
         ButtonMaxLayout.setHorizontalGroup(
             ButtonMaxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
+            .addGap(0, 49, Short.MAX_VALUE)
             .addGroup(ButtonMaxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(fullmax, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE))
+                .addGroup(ButtonMaxLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(fullmax, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         ButtonMaxLayout.setVerticalGroup(
             ButtonMaxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 50, Short.MAX_VALUE)
             .addGroup(ButtonMaxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(fullmax, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE))
+                .addGroup(ButtonMaxLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(fullmax, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
-        jPanel1.add(ButtonMax, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 50));
+        javax.swing.GroupLayout ButtonCloseLayout = new javax.swing.GroupLayout(ButtonClose);
+        ButtonClose.setLayout(ButtonCloseLayout);
+        ButtonCloseLayout.setHorizontalGroup(
+            ButtonCloseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ButtonCloseLayout.createSequentialGroup()
+                .addGap(0, 813, Short.MAX_VALUE)
+                .addComponent(ButtonMax, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(close, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        ButtonCloseLayout.setVerticalGroup(
+            ButtonCloseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ButtonCloseLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(ButtonCloseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(close, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ButtonMax, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
 
-        Header.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 0, 130, 50));
+        jPanel2.add(ButtonClose, java.awt.BorderLayout.PAGE_START);
+
+        Header.add(jPanel2, java.awt.BorderLayout.CENTER);
 
         add(Header, java.awt.BorderLayout.PAGE_START);
 
         menu.setPreferredSize(new java.awt.Dimension(270, 500));
         menu.setLayout(new java.awt.BorderLayout());
 
-        MenuIcon.setBackground(new java.awt.Color(15, 29, 52));
+        MenuIcon.setBackground(new java.awt.Color(0, 0, 0));
         MenuIcon.setPreferredSize(new java.awt.Dimension(50, 500));
         MenuIcon.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -268,7 +278,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
 
         MenuIcon.add(hidemenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 50, -1));
 
-        jPanel6.setBackground(new java.awt.Color(15, 29, 52));
+        jPanel6.setBackground(new java.awt.Color(0, 0, 0));
         jPanel6.setPreferredSize(new java.awt.Dimension(50, 50));
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -284,7 +294,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
 
         MenuIcon.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 50, -1));
 
-        jPanel7.setBackground(new java.awt.Color(15, 29, 52));
+        jPanel7.setBackground(new java.awt.Color(0, 0, 0));
         jPanel7.setPreferredSize(new java.awt.Dimension(50, 50));
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
@@ -302,10 +312,10 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
 
         menu.add(MenuIcon, java.awt.BorderLayout.LINE_START);
 
-        menuhide.setBackground(new java.awt.Color(25, 29, 74));
+        menuhide.setBackground(new java.awt.Color(31, 31, 31));
         menuhide.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel8.setBackground(new java.awt.Color(25, 29, 74));
+        jPanel8.setBackground(new java.awt.Color(31, 31, 31));
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -341,7 +351,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
 
         menuhide.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 220, 60));
 
-        jPanel9.setBackground(new java.awt.Color(25, 29, 74));
+        jPanel9.setBackground(new java.awt.Color(31, 31, 31));
 
         jLabel5.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -377,7 +387,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
 
         menuhide.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, -1, -1));
 
-        jPanel10.setBackground(new java.awt.Color(25, 29, 74));
+        jPanel10.setBackground(new java.awt.Color(31, 31, 31));
 
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/back.png"))); // NOI18N
@@ -411,19 +421,8 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
 
         add(menu, java.awt.BorderLayout.LINE_START);
 
-        userProcessContainer.setBackground(new java.awt.Color(73, 128, 242));
-
-        javax.swing.GroupLayout userProcessContainerLayout = new javax.swing.GroupLayout(userProcessContainer);
-        userProcessContainer.setLayout(userProcessContainerLayout);
-        userProcessContainerLayout.setHorizontalGroup(
-            userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 530, Short.MAX_VALUE)
-        );
-        userProcessContainerLayout.setVerticalGroup(
-            userProcessContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 546, Short.MAX_VALUE)
-        );
-
+        userProcessContainer.setBackground(new java.awt.Color(208, 93, 2));
+        userProcessContainer.setLayout(new java.awt.CardLayout());
         add(userProcessContainer, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -449,21 +448,6 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_jLabel5MouseClicked
-
-    private void closeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeMouseClicked
-        // TODO add your handling code here:
-        System.exit(0);
-    }//GEN-LAST:event_closeMouseClicked
-
-    private void closeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeMouseEntered
-        // TODO add your handling code here:
-        changecolor(ButtonClose, new Color(204,0,0));
-    }//GEN-LAST:event_closeMouseEntered
-
-    private void closeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeMouseExited
-        // TODO add your handling code here:
-        changecolor(ButtonClose, new Color(15,29,52));
-    }//GEN-LAST:event_closeMouseExited
 
     private void fullmaxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fullmaxMouseClicked
         // TODO add your handling code here:
@@ -506,6 +490,21 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_ButtonhidemenuMouseExited
 
+    private void closeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeMouseExited
+        // TODO add your handling code here:
+        changecolor(ButtonClose, new Color(15,29,52));
+    }//GEN-LAST:event_closeMouseExited
+
+    private void closeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeMouseEntered
+        // TODO add your handling code here:
+        changecolor(ButtonClose, new Color(204,0,0));
+    }//GEN-LAST:event_closeMouseEntered
+
+    private void closeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeMouseClicked
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_closeMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ButtonClose;
@@ -519,8 +518,8 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;

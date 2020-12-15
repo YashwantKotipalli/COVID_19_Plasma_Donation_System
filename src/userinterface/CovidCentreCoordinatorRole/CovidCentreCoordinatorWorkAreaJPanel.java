@@ -143,11 +143,10 @@ public class CovidCentreCoordinatorWorkAreaJPanel extends javax.swing.JPanel {
         Header.setPreferredSize(new java.awt.Dimension(800, 50));
         Header.setLayout(new java.awt.BorderLayout());
 
-        iconminmax.setBackground(new java.awt.Color(15, 29, 52));
+        iconminmax.setBackground(new java.awt.Color(0, 0, 0));
         iconminmax.setMaximumSize(new java.awt.Dimension(150, 50));
         iconminmax.setMinimumSize(new java.awt.Dimension(150, 50));
         iconminmax.setPreferredSize(new java.awt.Dimension(150, 50));
-        iconminmax.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         ButtonClose.setBackground(new java.awt.Color(15, 29, 52));
         ButtonClose.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -170,24 +169,12 @@ public class CovidCentreCoordinatorWorkAreaJPanel extends javax.swing.JPanel {
         ButtonClose.setLayout(ButtonCloseLayout);
         ButtonCloseLayout.setHorizontalGroup(
             ButtonCloseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
-            .addGroup(ButtonCloseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(ButtonCloseLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(close, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addComponent(close, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
         );
         ButtonCloseLayout.setVerticalGroup(
             ButtonCloseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
-            .addGroup(ButtonCloseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(ButtonCloseLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(close, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addComponent(close, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
         );
-
-        iconminmax.add(ButtonClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 0, -1, -1));
 
         ButtonMax.setBackground(new java.awt.Color(15, 29, 52));
         ButtonMax.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -210,24 +197,31 @@ public class CovidCentreCoordinatorWorkAreaJPanel extends javax.swing.JPanel {
         ButtonMax.setLayout(ButtonMaxLayout);
         ButtonMaxLayout.setHorizontalGroup(
             ButtonMaxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 53, Short.MAX_VALUE)
-            .addGroup(ButtonMaxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(ButtonMaxLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(fullmax, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addComponent(fullmax, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
         );
         ButtonMaxLayout.setVerticalGroup(
             ButtonMaxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
-            .addGroup(ButtonMaxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(ButtonMaxLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(fullmax, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ButtonMaxLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(fullmax, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        iconminmax.add(ButtonMax, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 0, -1, -1));
+        javax.swing.GroupLayout iconminmaxLayout = new javax.swing.GroupLayout(iconminmax);
+        iconminmax.setLayout(iconminmaxLayout);
+        iconminmaxLayout.setHorizontalGroup(
+            iconminmaxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(iconminmaxLayout.createSequentialGroup()
+                .addContainerGap(620, Short.MAX_VALUE)
+                .addComponent(ButtonMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ButtonClose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        iconminmaxLayout.setVerticalGroup(
+            iconminmaxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(ButtonMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(ButtonClose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         Header.add(iconminmax, java.awt.BorderLayout.CENTER);
 
@@ -236,7 +230,7 @@ public class CovidCentreCoordinatorWorkAreaJPanel extends javax.swing.JPanel {
         menu.setPreferredSize(new java.awt.Dimension(270, 50));
         menu.setLayout(new java.awt.BorderLayout());
 
-        MenuIcon.setBackground(new java.awt.Color(15, 29, 52));
+        MenuIcon.setBackground(new java.awt.Color(0, 0, 0));
         MenuIcon.setPreferredSize(new java.awt.Dimension(50, 450));
         MenuIcon.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -292,7 +286,7 @@ public class CovidCentreCoordinatorWorkAreaJPanel extends javax.swing.JPanel {
 
         MenuIcon.add(hidemenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 5, 50, -1));
 
-        jPanel9.setBackground(new java.awt.Color(15, 29, 52));
+        jPanel9.setBackground(new java.awt.Color(0, 0, 0));
         jPanel9.setPreferredSize(new java.awt.Dimension(50, 50));
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
@@ -326,10 +320,10 @@ public class CovidCentreCoordinatorWorkAreaJPanel extends javax.swing.JPanel {
 
         menu.add(MenuIcon, java.awt.BorderLayout.LINE_START);
 
-        menuhide.setBackground(new java.awt.Color(25, 29, 74));
+        menuhide.setBackground(new java.awt.Color(31, 31, 31));
         menuhide.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBackground(new java.awt.Color(25, 29, 74));
+        jPanel2.setBackground(new java.awt.Color(31, 31, 31));
 
         btnProfile.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnProfile.setForeground(new java.awt.Color(255, 255, 255));
@@ -364,7 +358,7 @@ public class CovidCentreCoordinatorWorkAreaJPanel extends javax.swing.JPanel {
 
         menuhide.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 220, 50));
 
-        jPanel3.setBackground(new java.awt.Color(25, 29, 74));
+        jPanel3.setBackground(new java.awt.Color(31, 31, 31));
 
         btnManageRequests.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnManageRequests.setForeground(new java.awt.Color(255, 255, 255));
@@ -396,7 +390,7 @@ public class CovidCentreCoordinatorWorkAreaJPanel extends javax.swing.JPanel {
 
         menuhide.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, -1, -1));
 
-        jPanel4.setBackground(new java.awt.Color(25, 29, 74));
+        jPanel4.setBackground(new java.awt.Color(31, 31, 31));
 
         btnPatientStatus.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnPatientStatus.setForeground(new java.awt.Color(255, 255, 255));
@@ -431,8 +425,9 @@ public class CovidCentreCoordinatorWorkAreaJPanel extends javax.swing.JPanel {
 
         menuhide.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, -1, -1));
 
-        jPanel5.setBackground(new java.awt.Color(25, 29, 74));
+        jPanel5.setBackground(new java.awt.Color(31, 31, 31));
 
+        btnReceiveRequests.setBackground(new java.awt.Color(31, 31, 31));
         btnReceiveRequests.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnReceiveRequests.setForeground(new java.awt.Color(255, 255, 255));
         btnReceiveRequests.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -447,23 +442,21 @@ public class CovidCentreCoordinatorWorkAreaJPanel extends javax.swing.JPanel {
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 224, Short.MAX_VALUE)
-            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnReceiveRequests)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnReceiveRequests)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
-            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(btnReceiveRequests, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnReceiveRequests, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         menuhide.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 260, -1, -1));
 
-        jPanel7.setBackground(new java.awt.Color(25, 29, 74));
+        jPanel7.setBackground(new java.awt.Color(31, 31, 31));
 
         jLabel6.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
@@ -495,7 +488,7 @@ public class CovidCentreCoordinatorWorkAreaJPanel extends javax.swing.JPanel {
 
         add(menu, java.awt.BorderLayout.LINE_START);
 
-        userProcessContainer.setBackground(new java.awt.Color(73, 128, 242));
+        userProcessContainer.setBackground(new java.awt.Color(208, 93, 2));
         userProcessContainer.setLayout(new java.awt.CardLayout());
         add(userProcessContainer, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
@@ -538,7 +531,7 @@ public class CovidCentreCoordinatorWorkAreaJPanel extends javax.swing.JPanel {
     private void btnReceiveRequestsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReceiveRequestsMouseClicked
         // TODO add your handling code here:
         
-        VolunteerReceiverRequestJPanel panel = new VolunteerReceiverRequestJPanel(system);
+        VolunteerReceiverRequestJPanel panel = new VolunteerReceiverRequestJPanel(system, userAccount, network);
         userProcessContainer.add("VolunteerReceiverRequestJPanel", panel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
