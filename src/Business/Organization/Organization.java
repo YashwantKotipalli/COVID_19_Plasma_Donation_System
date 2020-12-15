@@ -4,6 +4,7 @@
  */
 package Business.Organization;
 
+import Business.BloodGroup.BloodGroup;
 import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
 import Business.Employee.EmployeeDirectory;
@@ -18,13 +19,15 @@ import java.util.ArrayList;
  */
 public abstract class Organization {
 
+    private int organizationID;
     private String name;
+    private String realName;
     private WorkQueue workQueue;
     private EmployeeDirectory employeeDirectory;
     private UserAccountDirectory userAccountDirectory;
-    private int organizationID;
-    private static int counter=0;
     
+    private static int counter=0;
+    private BloodGroup bloodGroup;
     private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
     
     
@@ -107,6 +110,7 @@ public abstract class Organization {
         System.out.println("initialise work queue");
         employeeDirectory = new EmployeeDirectory();
         userAccountDirectory = new UserAccountDirectory();
+        bloodGroup = new BloodGroup();
         
           organizationID = counter;  
         
@@ -144,6 +148,25 @@ public abstract class Organization {
         this.workQueue = workQueue;
     }
 
+    public BloodGroup getBloodGroup() {
+        return bloodGroup;
+    }
+
+    public void setBloodGroup(BloodGroup bloodGroup) {
+        this.bloodGroup = bloodGroup;
+    }
+
+    public String getRealName() {
+        return realName;
+    }
+
+    public void setRealName(String realName) {
+        this.realName = realName;
+    }
+
+    
+    
+    
     @Override
     public String toString() {
         return name;
