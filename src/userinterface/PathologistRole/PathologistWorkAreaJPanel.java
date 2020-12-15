@@ -51,6 +51,7 @@ public class PathologistWorkAreaJPanel extends javax.swing.JPanel {
     private Enterprise enterprise;
     private EcoSystem system;
     private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
+    private Network network;
     
     public PathologistWorkAreaJPanel(UserAccount account, PathologistOrganization pathoorganization, Enterprise enterprise, EcoSystem business, Network network) {
         initComponents();
@@ -58,6 +59,8 @@ public class PathologistWorkAreaJPanel extends javax.swing.JPanel {
         this.pathoorganization = pathoorganization;
         this.enterprise = enterprise;
         this.system = business;
+        this.network = network;
+        
     }
 
     /**
@@ -107,6 +110,7 @@ public class PathologistWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jSpinField1 = new com.toedter.components.JSpinField();
         Header = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         ButtonClose = new javax.swing.JPanel();
@@ -132,11 +136,10 @@ public class PathologistWorkAreaJPanel extends javax.swing.JPanel {
 
         Header.setBackground(new java.awt.Color(15, 29, 52));
         Header.setPreferredSize(new java.awt.Dimension(800, 50));
-        Header.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        Header.setLayout(new java.awt.BorderLayout());
 
-        jPanel6.setBackground(new java.awt.Color(15, 29, 52));
+        jPanel6.setBackground(new java.awt.Color(0, 0, 0));
         jPanel6.setPreferredSize(new java.awt.Dimension(150, 50));
-        jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         ButtonClose.setBackground(new java.awt.Color(15, 29, 52));
         ButtonClose.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -168,15 +171,14 @@ public class PathologistWorkAreaJPanel extends javax.swing.JPanel {
         );
         ButtonCloseLayout.setVerticalGroup(
             ButtonCloseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ButtonCloseLayout.createSequentialGroup()
-                .addComponent(close, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ButtonCloseLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(close, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-
-        jPanel6.add(ButtonClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 0, -1, 50));
 
         BtnMax.setBackground(new java.awt.Color(15, 29, 52));
         BtnMax.setPreferredSize(new java.awt.Dimension(50, 50));
+        BtnMax.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         fullmax.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         fullmax.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/full_screen_32px.png"))); // NOI18N
@@ -192,38 +194,32 @@ public class PathologistWorkAreaJPanel extends javax.swing.JPanel {
                 fullmaxMouseExited(evt);
             }
         });
+        BtnMax.add(fullmax, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 50, 50));
 
-        javax.swing.GroupLayout BtnMaxLayout = new javax.swing.GroupLayout(BtnMax);
-        BtnMax.setLayout(BtnMaxLayout);
-        BtnMaxLayout.setHorizontalGroup(
-            BtnMaxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
-            .addGroup(BtnMaxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(BtnMaxLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(fullmax, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap(803, Short.MAX_VALUE)
+                .addComponent(BtnMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ButtonClose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-        BtnMaxLayout.setVerticalGroup(
-            BtnMaxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
-            .addGroup(BtnMaxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(BtnMaxLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(fullmax, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(BtnMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(ButtonClose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        jPanel6.add(BtnMax, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, -1, 50));
-
-        Header.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 0, 180, 50));
+        Header.add(jPanel6, java.awt.BorderLayout.CENTER);
 
         add(Header, java.awt.BorderLayout.PAGE_START);
 
         menu.setPreferredSize(new java.awt.Dimension(270, 500));
         menu.setLayout(new java.awt.BorderLayout());
 
-        MenuIcon.setBackground(new java.awt.Color(15, 29, 52));
+        MenuIcon.setBackground(new java.awt.Color(0, 0, 0));
         MenuIcon.setPreferredSize(new java.awt.Dimension(50, 500));
         MenuIcon.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -280,10 +276,10 @@ public class PathologistWorkAreaJPanel extends javax.swing.JPanel {
 
         menu.add(MenuIcon, java.awt.BorderLayout.LINE_START);
 
-        jPanel4.setBackground(new java.awt.Color(25, 29, 74));
+        jPanel4.setBackground(new java.awt.Color(31, 31, 31));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Profile.setBackground(new java.awt.Color(25, 29, 74));
+        Profile.setBackground(new java.awt.Color(31, 31, 31));
 
         BtnProfile.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         BtnProfile.setForeground(new java.awt.Color(255, 255, 255));
@@ -319,7 +315,7 @@ public class PathologistWorkAreaJPanel extends javax.swing.JPanel {
 
         jPanel4.add(Profile, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 220, 70));
 
-        ManageRequests.setBackground(new java.awt.Color(25, 29, 74));
+        ManageRequests.setBackground(new java.awt.Color(31, 31, 31));
 
         BtnManageRequest.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         BtnManageRequest.setForeground(new java.awt.Color(255, 255, 255));
@@ -355,7 +351,7 @@ public class PathologistWorkAreaJPanel extends javax.swing.JPanel {
 
         jPanel4.add(ManageRequests, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, -1, -1));
 
-        jPanel13.setBackground(new java.awt.Color(25, 29, 74));
+        jPanel13.setBackground(new java.awt.Color(31, 31, 31));
 
         jLabel6.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
@@ -391,7 +387,7 @@ public class PathologistWorkAreaJPanel extends javax.swing.JPanel {
 
         add(menu, java.awt.BorderLayout.LINE_START);
 
-        userProcessContainer.setBackground(new java.awt.Color(73, 128, 242));
+        userProcessContainer.setBackground(new java.awt.Color(208, 93, 2));
         userProcessContainer.setLayout(new java.awt.CardLayout());
         add(userProcessContainer, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
@@ -463,7 +459,7 @@ public class PathologistWorkAreaJPanel extends javax.swing.JPanel {
 
     private void BtnManageRequestMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnManageRequestMouseClicked
         // TODO add your handling code here:
-        ManagePathologistRequests managePathologistRequest = new ManagePathologistRequests(system,userAccount,pathoorganization,enterprise);
+        ManagePathologistRequests managePathologistRequest = new ManagePathologistRequests(system,userAccount,pathoorganization,enterprise, network);
         userProcessContainer.add("ManagePathologistRequests", managePathologistRequest);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -496,6 +492,7 @@ public class PathologistWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel9;
+    private com.toedter.components.JSpinField jSpinField1;
     private javax.swing.JPanel menu;
     private javax.swing.JPanel userProcessContainer;
     // End of variables declaration//GEN-END:variables

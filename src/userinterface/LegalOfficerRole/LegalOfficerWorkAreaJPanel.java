@@ -103,7 +103,7 @@ public class LegalOfficerWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        Header = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         ButtonClose = new javax.swing.JPanel();
         close = new javax.swing.JLabel();
@@ -128,16 +128,15 @@ public class LegalOfficerWorkAreaJPanel extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(800, 500));
         setLayout(new java.awt.BorderLayout());
 
-        jPanel1.setBackground(new java.awt.Color(15, 29, 52));
-        jPanel1.setPreferredSize(new java.awt.Dimension(800, 50));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        Header.setBackground(new java.awt.Color(0, 0, 0));
+        Header.setPreferredSize(new java.awt.Dimension(800, 50));
 
-        jPanel6.setBackground(new java.awt.Color(15, 29, 52));
+        jPanel6.setBackground(new java.awt.Color(0, 0, 0));
         jPanel6.setPreferredSize(new java.awt.Dimension(150, 50));
-        jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         ButtonClose.setBackground(new java.awt.Color(15, 29, 52));
         ButtonClose.setPreferredSize(new java.awt.Dimension(50, 50));
+        ButtonClose.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         close.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         close.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/delete_32px.png"))); // NOI18N
@@ -153,28 +152,11 @@ public class LegalOfficerWorkAreaJPanel extends javax.swing.JPanel {
                 closeMouseExited(evt);
             }
         });
-
-        javax.swing.GroupLayout ButtonCloseLayout = new javax.swing.GroupLayout(ButtonClose);
-        ButtonClose.setLayout(ButtonCloseLayout);
-        ButtonCloseLayout.setHorizontalGroup(
-            ButtonCloseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 53, Short.MAX_VALUE)
-            .addGroup(ButtonCloseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(ButtonCloseLayout.createSequentialGroup()
-                    .addComponent(close, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        ButtonCloseLayout.setVerticalGroup(
-            ButtonCloseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
-            .addGroup(ButtonCloseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(close, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE))
-        );
-
-        jPanel6.add(ButtonClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(105, 0, 50, 50));
+        ButtonClose.add(close, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 50, 50));
 
         ButtonMax.setBackground(new java.awt.Color(15, 29, 52));
         ButtonMax.setPreferredSize(new java.awt.Dimension(50, 50));
+        ButtonMax.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         fullmax.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         fullmax.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/full_screen_32px.png"))); // NOI18N
@@ -188,32 +170,48 @@ public class LegalOfficerWorkAreaJPanel extends javax.swing.JPanel {
                 fullmaxMouseExited(evt);
             }
         });
+        ButtonMax.add(fullmax, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 50, 50));
 
-        javax.swing.GroupLayout ButtonMaxLayout = new javax.swing.GroupLayout(ButtonMax);
-        ButtonMax.setLayout(ButtonMaxLayout);
-        ButtonMaxLayout.setHorizontalGroup(
-            ButtonMaxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
-            .addGroup(ButtonMaxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(fullmax, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addGap(0, 1, Short.MAX_VALUE)
+                .addComponent(ButtonMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ButtonClose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-        ButtonMaxLayout.setVerticalGroup(
-            ButtonMaxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
-            .addGroup(ButtonMaxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(fullmax, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ButtonClose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ButtonMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jPanel6.add(ButtonMax, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, 50, 50));
+        javax.swing.GroupLayout HeaderLayout = new javax.swing.GroupLayout(Header);
+        Header.setLayout(HeaderLayout);
+        HeaderLayout.setHorizontalGroup(
+            HeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HeaderLayout.createSequentialGroup()
+                .addGap(0, 864, Short.MAX_VALUE)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        HeaderLayout.setVerticalGroup(
+            HeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(HeaderLayout.createSequentialGroup()
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26))
+        );
 
-        jPanel1.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 0, 160, 50));
-
-        add(jPanel1, java.awt.BorderLayout.PAGE_START);
+        add(Header, java.awt.BorderLayout.PAGE_START);
 
         menu.setPreferredSize(new java.awt.Dimension(270, 500));
         menu.setLayout(new java.awt.BorderLayout());
 
-        jPanel3.setBackground(new java.awt.Color(15, 29, 52));
+        jPanel3.setBackground(new java.awt.Color(0, 0, 0));
         jPanel3.setPreferredSize(new java.awt.Dimension(50, 500));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -266,10 +264,10 @@ public class LegalOfficerWorkAreaJPanel extends javax.swing.JPanel {
 
         menu.add(jPanel3, java.awt.BorderLayout.LINE_START);
 
-        jPanel4.setBackground(new java.awt.Color(25, 29, 74));
+        jPanel4.setBackground(new java.awt.Color(31, 31, 31));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel11.setBackground(new java.awt.Color(25, 29, 74));
+        jPanel11.setBackground(new java.awt.Color(31, 31, 31));
 
         BtnProfile.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         BtnProfile.setForeground(new java.awt.Color(255, 255, 255));
@@ -305,7 +303,7 @@ public class LegalOfficerWorkAreaJPanel extends javax.swing.JPanel {
 
         jPanel4.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 220, 70));
 
-        jPanel12.setBackground(new java.awt.Color(25, 29, 74));
+        jPanel12.setBackground(new java.awt.Color(31, 31, 31));
 
         BtnManageRequests.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         BtnManageRequests.setForeground(new java.awt.Color(255, 255, 255));
@@ -341,7 +339,7 @@ public class LegalOfficerWorkAreaJPanel extends javax.swing.JPanel {
 
         jPanel4.add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, -1, -1));
 
-        jPanel13.setBackground(new java.awt.Color(25, 29, 74));
+        jPanel13.setBackground(new java.awt.Color(31, 31, 31));
 
         BtnConsent.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         BtnConsent.setForeground(new java.awt.Color(255, 255, 255));
@@ -377,7 +375,7 @@ public class LegalOfficerWorkAreaJPanel extends javax.swing.JPanel {
 
         jPanel4.add(jPanel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, -1, -1));
 
-        jPanel14.setBackground(new java.awt.Color(25, 29, 74));
+        jPanel14.setBackground(new java.awt.Color(31, 31, 31));
 
         jLabel7.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -413,7 +411,7 @@ public class LegalOfficerWorkAreaJPanel extends javax.swing.JPanel {
 
         add(menu, java.awt.BorderLayout.LINE_START);
 
-        userProcessContainer.setBackground(new java.awt.Color(73, 128, 242));
+        userProcessContainer.setBackground(new java.awt.Color(208, 93, 2));
         userProcessContainer.setLayout(new java.awt.CardLayout());
         add(userProcessContainer, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
@@ -510,11 +508,11 @@ public class LegalOfficerWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JPanel ButtonClose;
     private javax.swing.JPanel ButtonMax;
     private javax.swing.JLabel Buttonhidemenu;
+    private javax.swing.JPanel Header;
     private javax.swing.JLabel close;
     private javax.swing.JLabel fullmax;
     private javax.swing.JPanel hidemenu;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;

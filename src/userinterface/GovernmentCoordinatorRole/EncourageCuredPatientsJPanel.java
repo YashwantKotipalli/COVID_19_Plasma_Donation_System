@@ -4,13 +4,24 @@
  * and open the template in the editor.
  */
 package userinterface.GovernmentCoordinatorRole;
+import HomePages.TableFormat;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.mail.Message;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 //import javax.mail.*;
 //import javax.mail.internet.InternetAddress;/
 //import javax.mail.internet.MimeMessage;
@@ -27,6 +38,34 @@ public class EncourageCuredPatientsJPanel extends javax.swing.JPanel {
      */
     public EncourageCuredPatientsJPanel() {
         initComponents();
+     
+        tblCuredPatient.getTableHeader().setDefaultRenderer(new TableFormat());
+        poppulateTable();
+    }
+    private void  poppulateTable(){
+    
+    
+      DefaultTableModel dtmA = (DefaultTableModel)tblCuredPatient.getModel();
+      dtmA.setRowCount(0);
+      Object row[] = new Object[4];
+       String line = "";  
+       String splitBy = ",";  
+        try   
+        {  
+            //parsing a CSV file into BufferedReader class constructor  
+            BufferedReader br = new BufferedReader(new FileReader("CuredPatientsRecord.csv"));  
+            while ((line = br.readLine()) != null)   //returns a Boolean value  
+            {
+            String[] csv = line.split(splitBy);    // use comma as separator 
+            row[0]= csv[0];
+            row[1]= csv[1];
+            row[2]= csv[2];
+            row[3]= csv[3];
+            
+            dtmA.addRow(row);
+        }   }
+            catch (IOException e)   
+            {  e.printStackTrace(); }   
     }
 
     /**
@@ -39,7 +78,7 @@ public class EncourageCuredPatientsJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblCuredPatient = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -52,57 +91,77 @@ public class EncourageCuredPatientsJPanel extends javax.swing.JPanel {
         sendButton = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel25 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(73, 128, 242));
+        setBackground(new java.awt.Color(208, 93, 2));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setBackground(new java.awt.Color(0, 0, 0));
-        jTable1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jTable1.setForeground(new java.awt.Color(255, 255, 255));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblCuredPatient.setBackground(new java.awt.Color(0, 0, 0));
+        tblCuredPatient.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
+        tblCuredPatient.setForeground(new java.awt.Color(255, 255, 255));
+        tblCuredPatient.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "UID", "Name", "Email", "Covid Cured Date"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblCuredPatient.setGridColor(new java.awt.Color(0, 0, 0));
+        tblCuredPatient.setIntercellSpacing(new java.awt.Dimension(0, 0));
+        tblCuredPatient.setRowHeight(30);
+        tblCuredPatient.setShowVerticalLines(false);
+        jScrollPane1.setViewportView(tblCuredPatient);
+
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(62, 137, 1240, 183));
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("List Of Cured Patients");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 90, 268, -1));
 
-        jLabel2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("To");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 400, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("From");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 460, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Subject");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 510, -1, -1));
 
-        jLabel5.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Message body");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 560, -1, -1));
 
         toTextField.setBackground(new java.awt.Color(0, 0, 0));
-        toTextField.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        toTextField.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         toTextField.setForeground(new java.awt.Color(255, 255, 255));
         toTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 toTextFieldActionPerformed(evt);
             }
         });
+        add(toTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 400, 330, -1));
 
         fromTextField.setBackground(new java.awt.Color(0, 0, 0));
-        fromTextField.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        fromTextField.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         fromTextField.setForeground(new java.awt.Color(255, 255, 255));
         fromTextField.setText("aedprojecttitans@gmail.com");
         fromTextField.addActionListener(new java.awt.event.ActionListener() {
@@ -110,29 +169,36 @@ public class EncourageCuredPatientsJPanel extends javax.swing.JPanel {
                 fromTextFieldActionPerformed(evt);
             }
         });
+        add(fromTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 450, 330, -1));
 
         subjectTextField.setBackground(new java.awt.Color(0, 0, 0));
-        subjectTextField.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        subjectTextField.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         subjectTextField.setForeground(new java.awt.Color(255, 255, 255));
         subjectTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 subjectTextFieldActionPerformed(evt);
             }
         });
+        add(subjectTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 500, 330, -1));
 
         messageTextField.setBackground(new java.awt.Color(0, 0, 0));
-        messageTextField.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        messageTextField.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         messageTextField.setForeground(new java.awt.Color(255, 255, 255));
+        add(messageTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 550, 330, 190));
 
+        sendButton.setBackground(new java.awt.Color(31, 31, 31));
+        sendButton.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
+        sendButton.setForeground(new java.awt.Color(255, 255, 255));
         sendButton.setText("Send Mail");
-        sendButton.setActionCommand("Send Mail");
+        sendButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         sendButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sendButtonActionPerformed(evt);
             }
         });
+        add(sendButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 690, 110, 40));
 
-        jPanel3.setBackground(new java.awt.Color(23, 35, 51));
+        jPanel3.setBackground(new java.awt.Color(31, 31, 31));
         jPanel3.setPreferredSize(new java.awt.Dimension(926, 70));
 
         jLabel25.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -146,7 +212,7 @@ public class EncourageCuredPatientsJPanel extends javax.swing.JPanel {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel25, javax.swing.GroupLayout.DEFAULT_SIZE, 902, Short.MAX_VALUE)
+                .addComponent(jLabel25, javax.swing.GroupLayout.DEFAULT_SIZE, 1606, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -157,67 +223,22 @@ public class EncourageCuredPatientsJPanel extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(196, 196, 196)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
-                        .addGap(122, 122, 122)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(toTextField)
-                            .addComponent(fromTextField)
-                            .addComponent(subjectTextField)
-                            .addComponent(messageTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(301, 301, 301)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(62, 62, 62)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 755, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(346, 346, 346)
-                        .addComponent(sendButton)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
-                .addGap(31, 31, 31)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(76, 76, 76)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(toTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(fromTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(48, 48, 48)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(subjectTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(messageTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(57, 57, 57)
-                .addComponent(sendButton)
-                .addContainerGap(69, Short.MAX_VALUE))
-        );
+        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1630, -1));
+
+        jButton1.setBackground(new java.awt.Color(31, 31, 31));
+        jButton1.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Curate Mail");
+        jButton1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 340, 130, 40));
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/letter.png"))); // NOI18N
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 460, 140, 130));
     }// </editor-fold>//GEN-END:initComponents
 
     private void toTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toTextFieldActionPerformed
@@ -231,9 +252,14 @@ public class EncourageCuredPatientsJPanel extends javax.swing.JPanel {
     private void sendButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendButtonActionPerformed
         // TODO add your handling code here:
         
+        if(toTextField.getText().equals("") || subjectTextField.getText().equals("")|| messageTextField.getText().equals(""))
+        {
+        JOptionPane.showMessageDialog(null,new JLabel(  "<html><h2><I>All fields are</I><font color='red'> mandatory</font>!</h2></html>") , "Error", JOptionPane.ERROR_MESSAGE);
+            
+        }
+        else{
         
-        
-       System.out.println("Preparing to send message ..");
+//       System.out.println("Preparing to send message ..");
       
        String toEmail = toTextField.getText();
 //       String toEmail = "yashwant7kotipalli@gmail.com";
@@ -272,10 +298,11 @@ public class EncourageCuredPatientsJPanel extends javax.swing.JPanel {
             System.out.println(""+ex);
         }
         
-        System.out.println("Sent message successfully ...");
+  //      System.out.println("Sent message successfully ...");
         
-                
-                
+     JOptionPane.showMessageDialog(null, new JLabel(  "<html><h2><I>Mail<font color='green'> sent</font> successfully!</I></h2></html>"));
+        }          
+       //JOptionPane.showMessageDialog(null,"Mail sent successfully!");
         
         
         
@@ -285,21 +312,43 @@ public class EncourageCuredPatientsJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_fromTextFieldActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+          int selectedRow = tblCuredPatient.getSelectedRow();
+        if(selectedRow < 0){
+            
+             JOptionPane.showMessageDialog(null, new JLabel(  "<html><h2><I>Please select<font color='red'> a row</font> from the<font color='green'> table</font> to view the details!</I></h2></html>"), "Warning", JOptionPane.WARNING_MESSAGE);
+           
+            
+            //JOptionPane.showMessageDialog(null,"Please select a row from the table first to View Details!","Warning!",JOptionPane.WARNING_MESSAGE);
+        }
+        else{
+        
+        
+        toTextField.setText(String.valueOf(tblCuredPatient.getValueAt(selectedRow, 2)));        
+        
+        }
+        
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField fromTextField;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField messageTextField;
     private javax.swing.JButton sendButton;
     private javax.swing.JTextField subjectTextField;
+    private javax.swing.JTable tblCuredPatient;
     private javax.swing.JTextField toTextField;
     // End of variables declaration//GEN-END:variables
 }
