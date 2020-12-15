@@ -8,6 +8,8 @@ package HomePages;
 import Business.EcoSystem;
 import Business.People.DonorRequestDirectory;
 import java.awt.CardLayout;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import userinterface.CovidCentreCoordinatorRole.NewReceiverJPanel;
 import userinterface.GovernmentCoordinatorRole.NewDonorJPanel;
 
@@ -25,8 +27,13 @@ public class DonorReceiverFramePage extends javax.swing.JFrame {
     
       
     public DonorReceiverFramePage(String type, EcoSystem system) {
+        
+        
         initComponents();
         //this.donorRequestDirectory = donorRequestDirectory;
+        
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2- this.getSize().height/2);
         
         if(type.equals("donor")){
             userProcessContainer.remove(this);
@@ -67,19 +74,12 @@ public class DonorReceiverFramePage extends javax.swing.JFrame {
         userProcessContainer = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(1550, 900));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         userProcessContainer.setLayout(new java.awt.CardLayout());
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(userProcessContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(userProcessContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        getContentPane().add(userProcessContainer, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
