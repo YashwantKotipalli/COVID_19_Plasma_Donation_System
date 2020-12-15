@@ -121,9 +121,9 @@ public class PlasmaBankCoordinatorWorkAreaJPanel extends javax.swing.JPanel {
 
         Header.setBackground(new java.awt.Color(15, 29, 52));
         Header.setPreferredSize(new java.awt.Dimension(800, 50));
-        Header.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        Header.setLayout(new java.awt.BorderLayout());
 
-        BtnMinMaxClose.setBackground(new java.awt.Color(15, 29, 52));
+        BtnMinMaxClose.setBackground(new java.awt.Color(0, 0, 0));
         BtnMinMaxClose.setPreferredSize(new java.awt.Dimension(150, 50));
 
         BtnClose.setBackground(new java.awt.Color(15, 29, 52));
@@ -148,11 +148,9 @@ public class PlasmaBankCoordinatorWorkAreaJPanel extends javax.swing.JPanel {
         BtnClose.setLayout(BtnCloseLayout);
         BtnCloseLayout.setHorizontalGroup(
             BtnCloseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 57, Short.MAX_VALUE)
             .addGroup(BtnCloseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(BtnCloseLayout.createSequentialGroup()
-                    .addComponent(close, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(close, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE))
         );
         BtnCloseLayout.setVerticalGroup(
             BtnCloseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -183,11 +181,9 @@ public class PlasmaBankCoordinatorWorkAreaJPanel extends javax.swing.JPanel {
         BtnMax.setLayout(BtnMaxLayout);
         BtnMaxLayout.setHorizontalGroup(
             BtnMaxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 58, Short.MAX_VALUE)
             .addGroup(BtnMaxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(BtnMaxLayout.createSequentialGroup()
-                    .addComponent(fullmax, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(fullmax, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE))
         );
         BtnMaxLayout.setVerticalGroup(
             BtnMaxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -200,29 +196,27 @@ public class PlasmaBankCoordinatorWorkAreaJPanel extends javax.swing.JPanel {
         BtnMinMaxClose.setLayout(BtnMinMaxCloseLayout);
         BtnMinMaxCloseLayout.setHorizontalGroup(
             BtnMinMaxCloseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BtnMinMaxCloseLayout.createSequentialGroup()
-                .addGap(0, 13, Short.MAX_VALUE)
-                .addComponent(BtnMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(BtnMinMaxCloseLayout.createSequentialGroup()
+                .addContainerGap(865, Short.MAX_VALUE)
+                .addComponent(BtnMax, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(BtnClose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(BtnClose, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         BtnMinMaxCloseLayout.setVerticalGroup(
             BtnMinMaxCloseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(BtnMinMaxCloseLayout.createSequentialGroup()
-                .addGroup(BtnMinMaxCloseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(BtnClose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BtnMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(BtnClose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(BtnMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        Header.add(BtnMinMaxClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 0, 120, 50));
+        Header.add(BtnMinMaxClose, java.awt.BorderLayout.CENTER);
 
         add(Header, java.awt.BorderLayout.PAGE_START);
 
         menu.setPreferredSize(new java.awt.Dimension(270, 500));
         menu.setLayout(new java.awt.BorderLayout());
 
-        menuIcon.setBackground(new java.awt.Color(15, 29, 52));
+        menuIcon.setBackground(new java.awt.Color(0, 0, 0));
         menuIcon.setPreferredSize(new java.awt.Dimension(50, 500));
         menuIcon.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -280,10 +274,10 @@ public class PlasmaBankCoordinatorWorkAreaJPanel extends javax.swing.JPanel {
 
         menu.add(menuIcon, java.awt.BorderLayout.LINE_START);
 
-        jPanel4.setBackground(new java.awt.Color(25, 29, 74));
+        jPanel4.setBackground(new java.awt.Color(31, 31, 31));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel10.setBackground(new java.awt.Color(25, 29, 74));
+        jPanel10.setBackground(new java.awt.Color(31, 31, 31));
 
         BtnProfile.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         BtnProfile.setForeground(new java.awt.Color(255, 255, 255));
@@ -319,7 +313,7 @@ public class PlasmaBankCoordinatorWorkAreaJPanel extends javax.swing.JPanel {
 
         jPanel4.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 220, 50));
 
-        jPanel11.setBackground(new java.awt.Color(25, 29, 74));
+        jPanel11.setBackground(new java.awt.Color(31, 31, 31));
 
         BtnManageRequests.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         BtnManageRequests.setForeground(new java.awt.Color(255, 255, 255));
@@ -355,7 +349,7 @@ public class PlasmaBankCoordinatorWorkAreaJPanel extends javax.swing.JPanel {
 
         jPanel4.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, -1, -1));
 
-        jPanel12.setBackground(new java.awt.Color(25, 29, 74));
+        jPanel12.setBackground(new java.awt.Color(31, 31, 31));
 
         jLabel6.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
@@ -391,7 +385,7 @@ public class PlasmaBankCoordinatorWorkAreaJPanel extends javax.swing.JPanel {
 
         add(menu, java.awt.BorderLayout.LINE_START);
 
-        userProcessContainer.setBackground(new java.awt.Color(73, 128, 242));
+        userProcessContainer.setBackground(new java.awt.Color(208, 93, 2));
         userProcessContainer.setLayout(new java.awt.CardLayout());
         add(userProcessContainer, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
@@ -462,7 +456,7 @@ public class PlasmaBankCoordinatorWorkAreaJPanel extends javax.swing.JPanel {
 
     private void BtnManageRequestsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnManageRequestsMouseClicked
         // TODO add your handling code here:
-        PlasmaRequestJPanel plasmaRequestJPanel = new PlasmaRequestJPanel( userAccount,  plasmaorganization, enterprise, network);
+        PlasmaRequestJPanel plasmaRequestJPanel = new PlasmaRequestJPanel( userAccount,  plasmaorganization, enterprise, network, system);
         userProcessContainer.add("PlasmaRequestJPanel",plasmaRequestJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer); 

@@ -4,6 +4,7 @@
  */
 package userinterface.SystemAdminWorkArea;
 
+import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
 import Business.Employee.Employee;
 import Business.Enterprise.Enterprise;
@@ -11,10 +12,12 @@ import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.Role.AdminRole;
 import Business.UserAccount.UserAccount;
+import HomePages.TableFormat;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
 import javax.swing.BorderFactory;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -28,6 +31,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private EcoSystem system;
     private Enterprise enterprise;
+    private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
     /**
      * Creates new form ManageEnterpriseJPanel
      */
@@ -37,6 +41,8 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         this.userProcessContainer = userProcessContainer;
         this.system = system;
 
+        enterpriseJTable.getTableHeader().setDefaultRenderer(new TableFormat());
+        tblAdminUserName.getTableHeader().setDefaultRenderer(new TableFormat());
         populateTable();
        
     }
@@ -120,10 +126,10 @@ private boolean checkUserIdExists(String userName) {
 
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        tblAdminUserName = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tblAdminUserName = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -137,7 +143,7 @@ private boolean checkUserIdExists(String userName) {
         btnCreateAdmin = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         enterpriseJTable = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -152,10 +158,40 @@ private boolean checkUserIdExists(String userName) {
         ));
         jScrollPane2.setViewportView(jTable1);
 
-        setBackground(new java.awt.Color(73, 128, 242));
+        setBackground(new java.awt.Color(208, 93, 2));
+        setPreferredSize(new java.awt.Dimension(1550, 900));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel3.setBackground(new java.awt.Color(31, 31, 31));
+        jPanel3.setPreferredSize(new java.awt.Dimension(1550, 70));
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("Manage Admin for Enterprise");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 1496, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1520, -1));
 
         tblAdminUserName.setBackground(new java.awt.Color(0, 0, 0));
-        tblAdminUserName.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        tblAdminUserName.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(204, 255, 204)));
+        tblAdminUserName.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         tblAdminUserName.setForeground(new java.awt.Color(255, 255, 255));
         tblAdminUserName.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -173,6 +209,9 @@ private boolean checkUserIdExists(String userName) {
                 return canEdit [columnIndex];
             }
         });
+        tblAdminUserName.setGridColor(new java.awt.Color(0, 0, 0));
+        tblAdminUserName.setRowHeight(30);
+        tblAdminUserName.setShowVerticalLines(false);
         jScrollPane3.setViewportView(tblAdminUserName);
         if (tblAdminUserName.getColumnModel().getColumnCount() > 0) {
             tblAdminUserName.getColumnModel().getColumn(0).setResizable(false);
@@ -180,32 +219,9 @@ private boolean checkUserIdExists(String userName) {
             tblAdminUserName.getColumnModel().getColumn(2).setResizable(false);
         }
 
-        jPanel3.setBackground(new java.awt.Color(23, 35, 51));
-        jPanel3.setPreferredSize(new java.awt.Dimension(926, 70));
+        add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 520, 710, 250));
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("Manage Admin for Enterprise");
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        jPanel2.setBackground(new java.awt.Color(73, 128, 242));
+        jPanel2.setBackground(new java.awt.Color(208, 93, 2));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 255, 204)));
         jPanel2.setPreferredSize(new java.awt.Dimension(250, 400));
         jPanel2.setRequestFocusEnabled(false);
@@ -216,43 +232,47 @@ private boolean checkUserIdExists(String userName) {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Create Admin");
 
-        jLabel5.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Enterprise:");
 
         txtName.setBackground(new java.awt.Color(0, 0, 0));
-        txtName.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        txtName.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         txtName.setForeground(new java.awt.Color(255, 255, 255));
         txtName.setEnabled(false);
 
-        jLabel6.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Admin Name:");
 
         txtAdminName.setBackground(new java.awt.Color(0, 0, 0));
-        txtAdminName.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        txtAdminName.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         txtAdminName.setForeground(new java.awt.Color(255, 255, 255));
         txtAdminName.setEnabled(false);
 
-        jLabel2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Username:");
 
         txtUserName.setBackground(new java.awt.Color(0, 0, 0));
-        txtUserName.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        txtUserName.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         txtUserName.setForeground(new java.awt.Color(255, 255, 255));
         txtUserName.setEnabled(false);
 
-        jLabel4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Password:");
 
         txtPassword.setBackground(new java.awt.Color(0, 0, 0));
-        txtPassword.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        txtPassword.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         txtPassword.setForeground(new java.awt.Color(255, 255, 255));
         txtPassword.setEnabled(false);
 
+        btnCreateAdmin.setBackground(new java.awt.Color(31, 31, 31));
+        btnCreateAdmin.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        btnCreateAdmin.setForeground(new java.awt.Color(255, 255, 255));
         btnCreateAdmin.setText("Create Admin");
+        btnCreateAdmin.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnCreateAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCreateAdminActionPerformed(evt);
@@ -281,19 +301,20 @@ private boolean checkUserIdExists(String userName) {
                         .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
                         .addComponent(txtAdminName, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(95, 95, 95)
-                .addComponent(btnCreateAdmin)
+                .addGap(100, 100, 100)
+                .addComponent(btnCreateAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(66, 66, 66)
+                .addGap(53, 53, 53)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -309,13 +330,16 @@ private boolean checkUserIdExists(String userName) {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
-                .addComponent(btnCreateAdmin)
-                .addGap(62, 62, 62))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addComponent(btnCreateAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31))
         );
 
+        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 114, 380, 400));
+
         enterpriseJTable.setBackground(new java.awt.Color(0, 0, 0));
-        enterpriseJTable.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        enterpriseJTable.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(204, 255, 204)));
+        enterpriseJTable.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         enterpriseJTable.setForeground(new java.awt.Color(255, 255, 255));
         enterpriseJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -326,13 +350,17 @@ private boolean checkUserIdExists(String userName) {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, true, false, true, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
+        enterpriseJTable.setGridColor(new java.awt.Color(0, 0, 0));
+        enterpriseJTable.setIntercellSpacing(new java.awt.Dimension(0, 0));
+        enterpriseJTable.setRowHeight(30);
+        enterpriseJTable.setShowVerticalLines(false);
         enterpriseJTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 enterpriseJTableMouseClicked(evt);
@@ -340,48 +368,10 @@ private boolean checkUserIdExists(String userName) {
         });
         jScrollPane1.setViewportView(enterpriseJTable);
 
-        jLabel1.setText("*Select a row to create Admin");
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 220, 900, 280));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(49, 49, 49)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(69, 69, 69)
-                                .addComponent(jLabel1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(41, 41, 41)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(24, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39))))
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 941, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 432, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(184, Short.MAX_VALUE))
-        );
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/date.png"))); // NOI18N
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 80, 130, 120));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCreateAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateAdminActionPerformed
@@ -408,28 +398,33 @@ private boolean checkUserIdExists(String userName) {
         
         
         if (selectedRow < 0){
-            JOptionPane.showMessageDialog(null, "Please select a row to Process" ,"Warning" , JOptionPane.WARNING_MESSAGE);
+            //JOptionPane.showMessageDialog(null, "Please select a row to Process" ,"Warning" , JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, new JLabel(  "<html><h2><I>Please select<font color='red'> a row</font> to process! </I></h2></html>"), "Warning", JOptionPane.WARNING_MESSAGE);
+            
+            
             return;
         }
         
         else if (txtUserName.getText().isEmpty() || txtAdminName.getText().isEmpty() || txtPassword.getText().isEmpty()    )
         {
-           JOptionPane.showMessageDialog(null, "All fields are mandatory!","Warning",JOptionPane.WARNING_MESSAGE);
-            return;
+           //JOptionPane.showMessageDialog(null, "All fields are mandatory!","Warning",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null,new JLabel(  "<html><h2><I>All fields are</I><font color='red'> mandatory</font>!</h2></html>") , "Error", JOptionPane.ERROR_MESSAGE);
+           return;
         }
         
         
         else if (!checkUserIdExists(txtUserName.getText())){
             txtUserName.setBorder(BorderFactory.createLineBorder(Color.RED));
             txtUserName.setForeground(Color.red);
-            JOptionPane.showMessageDialog(null, "UserName Already Present","Warning",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null,new JLabel(  "<html><h2><I>User name</I><font color='red'> already</font> present!</h2></html>"),"Warning",JOptionPane.WARNING_MESSAGE);
             return;
             }
          
-        else if (txtPassword.getText().length() < 5 ){
+        else if (txtPassword.getText().length() < 4 ){
             txtPassword.setBorder(BorderFactory.createLineBorder(Color.RED));
             txtPassword.setForeground(Color.red);
-            JOptionPane.showMessageDialog(null, "Password should be more than 5 characters","Warning",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, new JLabel("<html><h2><font color='red'><I>Password</I></font> should be<font color='green'> more than 4 digit!</font>!</h2></html>") , "Error", JOptionPane.ERROR_MESSAGE);
+            //JOptionPane.showMessageDialog(null, "Password should be more than 4 characters","Warning",JOptionPane.WARNING_MESSAGE);
             return;
             }
         
@@ -448,7 +443,10 @@ private boolean checkUserIdExists(String userName) {
         
         populateAdminTable(enterprise);
           
-        JOptionPane.showMessageDialog(null, "New Admin Credentials Created!");
+        JOptionPane.showMessageDialog(null, new JLabel("<html><h2>New Admin<font color='green'><I> credentials</I></font> created!</h2></html>"));
+        
+        dB4OUtil.storeSystem(system);
+        
           txtAdminName.setText("");
           txtUserName.setText("");
           txtPassword.setText("");
@@ -466,7 +464,10 @@ private boolean checkUserIdExists(String userName) {
         // TODO add your handling code here:
         int row = enterpriseJTable.getSelectedRow();
         if (row < 0) {
-            JOptionPane.showMessageDialog(null, "Please select a row from the table first", "Warning", JOptionPane.WARNING_MESSAGE);
+             JOptionPane.showMessageDialog(null, new JLabel(  "<html><h2><I>Please select<font color='red'> a row</font> from the<font color='green'> Table</I></font></h2></html>"), "Warning", JOptionPane.WARNING_MESSAGE);
+            
+            
+            //JOptionPane.showMessageDialog(null, "Please select a row from the table first", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
         Enterprise enterprise2 = (Enterprise) enterpriseJTable.getValueAt(row, 0);
@@ -484,13 +485,13 @@ private boolean checkUserIdExists(String userName) {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCreateAdmin;
     private javax.swing.JTable enterpriseJTable;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
