@@ -377,7 +377,7 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
         
         popData();
         
-        JOptionPane.showMessageDialog(null, new JLabel("<html><h2><I>User Account</I><font color='green'> created </font><I>successfully!/I<></h2></html>") , "Error", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(null, new JLabel("<html><h2><I>User Account</I><font color='green'> created </font><I>successfully!/I<></h2></html>") );//, "Error", JOptionPane.ERROR_MESSAGE);
                    
         //JOptionPane.showMessageDialog(null, "User account for " + userName + " created Successfully");
 

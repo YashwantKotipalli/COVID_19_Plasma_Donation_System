@@ -5,9 +5,11 @@
  */
 package userinterface.CovidCentreCoordinatorRole;
 
+import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
 import Business.People.Donor;
 import Business.People.Patient;
+import Business.People.PatientRequest;
 import HomePages.TableFormat;
 import javax.swing.table.DefaultTableModel;
 
@@ -18,12 +20,15 @@ import javax.swing.table.DefaultTableModel;
 public class PatientStatusJPanel extends javax.swing.JPanel {
 
     private EcoSystem system;
+      private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
 
     PatientStatusJPanel(EcoSystem system) {
         initComponents();
         this.system = system;
         patientTable.getTableHeader().setDefaultRenderer(new TableFormat());
+         patientTable1.getTableHeader().setDefaultRenderer(new TableFormat());
         populateTable();
+        populateTable1();
         
     }
     private void populateTable(){
@@ -32,6 +37,23 @@ public class PatientStatusJPanel extends javax.swing.JPanel {
         dtm.setRowCount(0);
         
          for(Patient patient: system.getPatientDirectory().getPatientList())
+         {            
+            Object row[] = new Object[4];
+            row[0]= patient;
+            row[1]=patient.getName();
+            row[2]=patient.getContact();
+            row[3]=patient.getStatus();
+              
+            dtm.addRow(row);
+         }
+    }
+    
+     private void populateTable1(){
+        DefaultTableModel dtm = (DefaultTableModel) patientTable1.getModel();
+        
+        dtm.setRowCount(0);
+        
+         for(PatientRequest patient: system.getPatientRequestDirectory().getPatientRequestList())
          {            
             Object row[] = new Object[4];
             row[0]= patient;
@@ -58,6 +80,8 @@ public class PatientStatusJPanel extends javax.swing.JPanel {
         jPanel3 = new javax.swing.JPanel();
         jLabel25 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        patientTable1 = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(208, 93, 2));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -85,14 +109,19 @@ public class PatientStatusJPanel extends javax.swing.JPanel {
         patientTable.setShowVerticalLines(false);
         jScrollPane1.setViewportView(patientTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 190, 1110, 530));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 190, 1110, 220));
 
         jButton2.setBackground(new java.awt.Color(31, 31, 31));
         jButton2.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Delete");
         jButton2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 750, 120, 40));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 430, 120, 40));
 
         jPanel3.setBackground(new java.awt.Color(31, 31, 31));
         jPanel3.setPreferredSize(new java.awt.Dimension(926, 70));
@@ -123,7 +152,45 @@ public class PatientStatusJPanel extends javax.swing.JPanel {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/patient.png"))); // NOI18N
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 340, 130, 140));
+
+        patientTable1.setBackground(new java.awt.Color(0, 0, 0));
+        patientTable1.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
+        patientTable1.setForeground(new java.awt.Color(255, 255, 255));
+        patientTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Patient ID", "Name", "Contact", "Status"
+            }
+        ));
+        patientTable1.setFocusable(false);
+        patientTable1.setGridColor(new java.awt.Color(0, 0, 0));
+        patientTable1.setIntercellSpacing(new java.awt.Dimension(0, 0));
+        patientTable1.setRowHeight(30);
+        patientTable1.setShowVerticalLines(false);
+        jScrollPane2.setViewportView(patientTable1);
+
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 500, 1110, 220));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        
+        int selectedRow = patientTable1.getSelectedRow(); 
+          PatientRequest dr =((PatientRequest) patientTable1.getValueAt(selectedRow, 0));
+ 
+          system.getPatientRequestDirectory().removePatientRequest(dr);
+          
+          //ddr.removeDonorRequest(dr);
+             
+          
+          dB4OUtil.storeSystem(system);
+          populateTable1();
+       
+        
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -133,6 +200,8 @@ public class PatientStatusJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel25;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable patientTable;
+    private javax.swing.JTable patientTable1;
     // End of variables declaration//GEN-END:variables
 }
