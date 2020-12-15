@@ -4,6 +4,8 @@
  */
 package userinterface.AdministrativeRole;
 
+import Business.DB4OUtil.DB4OUtil;
+import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import static Business.Enterprise.Enterprise.EnterpriseType.CovidCentre;
 import static Business.Enterprise.Enterprise.EnterpriseType.Government;
@@ -16,7 +18,11 @@ import Business.Organization.Organization.LegalType;
 import Business.Organization.Organization.PlasmaBankType;
 import Business.Organization.Organization.Type;
 import Business.Organization.OrganizationDirectory;
+import HomePages.TableFormat;
 import java.awt.CardLayout;
+import java.awt.Color;
+import javax.swing.BorderFactory;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -27,16 +33,20 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
     private OrganizationDirectory directory;
     private JPanel userProcessContainer;
     private Enterprise enterprise;
+    EcoSystem system;
+    private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
+
     
     /**
      * Creates new form ManageOrganizationJPanel
      */
-    public ManageOrganizationJPanel(JPanel userProcessContainer,OrganizationDirectory directory, Enterprise enterprise) {
+    public ManageOrganizationJPanel(JPanel userProcessContainer,OrganizationDirectory directory, Enterprise enterprise, EcoSystem system ) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.directory = directory;
         this.enterprise = enterprise;
-        
+        this.system = system;
+        organizationJTable.getTableHeader().setDefaultRenderer(new TableFormat());
         enterpriseNameTextField1.setText(enterprise.getName());
         populateTable();
         populateCombo();
@@ -102,8 +112,8 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
         
         for (Organization organization : directory.getOrganizationList()){
             Object[] row = new Object[2];
-            row[0] = organization.getOrganizationID();
-            row[1] = organization.getName();
+            row[0] = organization.getName();
+            row[1] = organization.getRealName();
             
             model.addRow(row);
         }
@@ -120,32 +130,35 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         organizationJTable = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        panel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        orgName = new javax.swing.JTextField();
+        txtOrgRealName = new javax.swing.JTextField();
         nameSeparator = new javax.swing.JSeparator();
         organizationJComboBox = new javax.swing.JComboBox();
         jLabel1 = new javax.swing.JLabel();
         addJButton = new javax.swing.JButton();
+        nameSeparator1 = new javax.swing.JSeparator();
         jPanel3 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         nameSeparator4 = new javax.swing.JSeparator();
         enterpriseNameTextField1 = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(73, 128, 242));
+        setBackground(new java.awt.Color(208, 93, 2));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         organizationJTable.setBackground(new java.awt.Color(0, 0, 0));
-        organizationJTable.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        organizationJTable.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(204, 255, 204)));
+        organizationJTable.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         organizationJTable.setForeground(new java.awt.Color(255, 255, 255));
         organizationJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "Name"
+                "Organization Type", "Organization Name"
             }
         ) {
             Class[] types = new Class [] {
@@ -163,13 +176,13 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        organizationJTable.setGridColor(new java.awt.Color(0, 0, 0));
+        organizationJTable.setIntercellSpacing(new java.awt.Dimension(0, 0));
+        organizationJTable.setRowHeight(30);
+        organizationJTable.setShowVerticalLines(false);
         jScrollPane1.setViewportView(organizationJTable);
-        if (organizationJTable.getColumnModel().getColumnCount() > 0) {
-            organizationJTable.getColumnModel().getColumn(0).setResizable(false);
-            organizationJTable.getColumnModel().getColumn(1).setResizable(false);
-        }
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 190, 480, 270));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 280, 820, 460));
 
         jLabel2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -180,103 +193,80 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
                 jLabel2MouseClicked(evt);
             }
         });
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 620, -1, 46));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 690, -1, 46));
 
-        jPanel2.setBackground(new java.awt.Color(73, 128, 242));
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 255, 204)));
-        jPanel2.setPreferredSize(new java.awt.Dimension(250, 400));
-        jPanel2.setRequestFocusEnabled(false);
-        jPanel2.setVerifyInputWhenFocusTarget(false);
+        panel1.setBackground(new java.awt.Color(208, 93, 2));
+        panel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 255, 204)));
+        panel1.setPreferredSize(new java.awt.Dimension(250, 400));
+        panel1.setRequestFocusEnabled(false);
+        panel1.setVerifyInputWhenFocusTarget(false);
+        panel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Create Organization");
+        panel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 328, 36));
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Name of Organization");
+        panel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 270, -1, 26));
 
-        orgName.setBorder(null);
-        orgName.setCaretColor(new java.awt.Color(30, 59, 92));
-        orgName.setOpaque(false);
-        orgName.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtOrgRealName.setBackground(new java.awt.Color(0, 0, 0));
+        txtOrgRealName.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
+        txtOrgRealName.setForeground(new java.awt.Color(255, 255, 255));
+        txtOrgRealName.setBorder(null);
+        txtOrgRealName.setCaretColor(new java.awt.Color(30, 59, 92));
+        txtOrgRealName.setOpaque(false);
+        txtOrgRealName.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                orgNameFocusGained(evt);
+                txtOrgRealNameFocusGained(evt);
             }
         });
-        orgName.addActionListener(new java.awt.event.ActionListener() {
+        txtOrgRealName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                orgNameActionPerformed(evt);
+                txtOrgRealNameActionPerformed(evt);
             }
         });
+        panel1.add(txtOrgRealName, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 312, 290, 30));
 
         nameSeparator.setForeground(new java.awt.Color(0, 0, 0));
+        panel1.add(nameSeparator, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 280, 10));
 
+        organizationJComboBox.setBackground(new java.awt.Color(0, 0, 0));
+        organizationJComboBox.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
+        organizationJComboBox.setForeground(new java.awt.Color(255, 255, 255));
         organizationJComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 organizationJComboBoxActionPerformed(evt);
             }
         });
+        panel1.add(organizationJComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, 261, 40));
 
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Select Organization Type ");
+        panel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, 250, -1));
 
+        addJButton.setBackground(new java.awt.Color(31, 31, 31));
+        addJButton.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
+        addJButton.setForeground(new java.awt.Color(255, 255, 255));
         addJButton.setText("Add Organization");
+        addJButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         addJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addJButtonActionPerformed(evt);
             }
         });
+        panel1.add(addJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 390, 190, 40));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(addJButton)
-                                .addComponent(nameSeparator, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(58, 58, 58)
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(organizationJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addComponent(orgName, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(organizationJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-                .addComponent(orgName, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(nameSeparator, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42)
-                .addComponent(addJButton)
-                .addGap(48, 48, 48))
-        );
+        nameSeparator1.setForeground(new java.awt.Color(0, 0, 0));
+        panel1.add(nameSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 350, 290, 10));
 
-        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 330, 370));
+        add(panel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 400, 460));
 
-        jPanel3.setBackground(new java.awt.Color(23, 35, 51));
+        jPanel3.setBackground(new java.awt.Color(31, 31, 31));
         jPanel3.setPreferredSize(new java.awt.Dimension(926, 70));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -290,7 +280,7 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 904, Short.MAX_VALUE)
+                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 1656, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -301,32 +291,50 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 928, -1));
+        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1680, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Enterprise:");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 110, -1, -1));
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 230, -1, -1));
 
         nameSeparator4.setForeground(new java.awt.Color(0, 0, 0));
-        add(nameSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 130, 200, 10));
-        add(enterpriseNameTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 100, 190, -1));
+        add(nameSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 260, 240, 10));
+
+        enterpriseNameTextField1.setBackground(new java.awt.Color(0, 0, 0));
+        enterpriseNameTextField1.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
+        enterpriseNameTextField1.setForeground(new java.awt.Color(255, 255, 255));
+        enterpriseNameTextField1.setBorder(null);
+        add(enterpriseNameTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 220, 230, 30));
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/organization.png"))); // NOI18N
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 150, 130, 120));
     }// </editor-fold>//GEN-END:initComponents
 
     private void addJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addJButtonActionPerformed
 
         String check1 = "";    
-        if (orgName.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Organization name cannot be empty!");
+        
+        if (txtOrgRealName.getText().isEmpty()) {
+            txtOrgRealName.setBorder(BorderFactory.createLineBorder(Color.RED));
+            txtOrgRealName.setForeground(Color.red);
+
+            JOptionPane.showMessageDialog(null, new JLabel("<html><h2><I>Organization Name<font color='red'> can not </font>be empty!/I<></h2></html>") , "Error", JOptionPane.ERROR_MESSAGE);
+                   
+
+            //JOptionPane.showMessageDialog(null, "Organization name cannot be empty!");
+            check1 = "do not go further!";
             return;
         }
 
         
         for (Organization organization : directory.getOrganizationList()) {
 
-            if (organization.getName().equals(orgName.getText())) {
-
-                JOptionPane.showMessageDialog(null, "Organization name already exists!");
+            if (organization.getName().equals(txtOrgRealName.getText())) {
+                
+            JOptionPane.showMessageDialog(null, new JLabel("<html><h2><I>Organization name</I><font color='red'> already</font><I> exists!/I<></h2></html>") , "Error", JOptionPane.ERROR_MESSAGE);
+                   
+                //JOptionPane.showMessageDialog(null, "Organization name already exists!");
                 check1 = "do not go further!";
                 return;
             }
@@ -335,26 +343,34 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
 // Main Process after validation checks
         if(check1.equals("")){
         if(enterprise.getEnterpriseType().toString().equals(Legal.toString())){
-            directory.createLegalOrganization((LegalType)organizationJComboBox.getSelectedItem());
+            directory.createLegalOrganization((LegalType)organizationJComboBox.getSelectedItem(), txtOrgRealName.getText());
         }
         else if(enterprise.getEnterpriseType().toString().equals(Government.toString())){
-            directory.createGovernmentOrganization((GovernmentType)organizationJComboBox.getSelectedItem());
+            directory.createGovernmentOrganization((GovernmentType)organizationJComboBox.getSelectedItem(), txtOrgRealName.getText());
         }
         else if(enterprise.getEnterpriseType().toString().equals(PlasmaBank.toString())){
-            directory.createPlasmaOrganization((PlasmaBankType)organizationJComboBox.getSelectedItem());
+            directory.createPlasmaOrganization((PlasmaBankType)organizationJComboBox.getSelectedItem(), txtOrgRealName.getText());
         }
         else if(enterprise.getEnterpriseType().toString().equals(CovidCentre.toString())){
-            directory.createCovidCentreOrganization((CovidCentreType)organizationJComboBox.getSelectedItem());
+            directory.createCovidCentreOrganization((CovidCentreType)organizationJComboBox.getSelectedItem(), txtOrgRealName.getText());
         }
         else{
             
         Type type = (Type) organizationJComboBox.getSelectedItem();
-        directory.createOrganization(type);
+        directory.createOrganization(type, txtOrgRealName.getText());
         }
         populateTable();
-        JOptionPane.showMessageDialog(null, "Organization created successfully!");
         
-        orgName.setText("");
+        
+       JOptionPane.showMessageDialog(null, new JLabel("<html><h2><I>A new Organization</I><font color='green'> created </font><I>successfully!/I<></h2></html>"));
+                   
+        //JOptionPane.showMessageDialog(null, "Organization created successfully!");
+        
+        
+        dB4OUtil.storeSystem(system);
+        
+        
+        txtOrgRealName.setText("");
         organizationJComboBox.removeItem(organizationJComboBox.getSelectedItem());
         }
     }//GEN-LAST:event_addJButtonActionPerformed
@@ -366,14 +382,14 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_jLabel2MouseClicked
 
-    private void orgNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_orgNameFocusGained
+    private void txtOrgRealNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtOrgRealNameFocusGained
         // TODO add your handling code here:
-        orgName.setText("");
-    }//GEN-LAST:event_orgNameFocusGained
+        txtOrgRealName.setText("");
+    }//GEN-LAST:event_txtOrgRealNameFocusGained
 
-    private void orgNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orgNameActionPerformed
+    private void txtOrgRealNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtOrgRealNameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_orgNameActionPerformed
+    }//GEN-LAST:event_txtOrgRealNameActionPerformed
 
     private void organizationJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_organizationJComboBoxActionPerformed
         // TODO add your handling code here:
@@ -388,13 +404,15 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator nameSeparator;
+    private javax.swing.JSeparator nameSeparator1;
     private javax.swing.JSeparator nameSeparator4;
-    private javax.swing.JTextField orgName;
     private javax.swing.JComboBox organizationJComboBox;
     private javax.swing.JTable organizationJTable;
+    private javax.swing.JPanel panel1;
+    private javax.swing.JTextField txtOrgRealName;
     // End of variables declaration//GEN-END:variables
 }

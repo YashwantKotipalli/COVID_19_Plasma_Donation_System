@@ -115,17 +115,19 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(800, 500));
         setLayout(new java.awt.BorderLayout());
 
-        Header.setBackground(new java.awt.Color(15, 29, 52));
+        Header.setBackground(new java.awt.Color(0, 0, 0));
         Header.setPreferredSize(new java.awt.Dimension(800, 50));
         Header.setLayout(new java.awt.BorderLayout());
 
-        iconminmaxclose.setBackground(new java.awt.Color(15, 29, 52));
+        iconminmaxclose.setBackground(new java.awt.Color(0, 0, 0));
         iconminmaxclose.setPreferredSize(new java.awt.Dimension(150, 50));
         iconminmaxclose.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         ButtonClose.setBackground(new java.awt.Color(15, 29, 52));
         ButtonClose.setPreferredSize(new java.awt.Dimension(50, 50));
 
+        close.setBackground(new java.awt.Color(31, 31, 31));
+        close.setForeground(new java.awt.Color(31, 31, 31));
         close.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         close.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/delete_32px.png"))); // NOI18N
         close.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -198,11 +200,11 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         menu.setPreferredSize(new java.awt.Dimension(270, 450));
         menu.setLayout(new java.awt.BorderLayout());
 
-        MenuIcon.setBackground(new java.awt.Color(15, 29, 52));
+        MenuIcon.setBackground(new java.awt.Color(0, 0, 0));
         MenuIcon.setPreferredSize(new java.awt.Dimension(50, 450));
         MenuIcon.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        linehidemenu.setBackground(new java.awt.Color(15, 29, 52));
+        linehidemenu.setBackground(new java.awt.Color(0, 0, 0));
         linehidemenu.setPreferredSize(new java.awt.Dimension(50, 5));
 
         javax.swing.GroupLayout linehidemenuLayout = new javax.swing.GroupLayout(linehidemenu);
@@ -221,6 +223,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         hidemenu.setBackground(new java.awt.Color(15, 29, 52));
         hidemenu.setPreferredSize(new java.awt.Dimension(50, 50));
 
+        Buttonhidemenu.setBackground(new java.awt.Color(0, 0, 0));
         Buttonhidemenu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Buttonhidemenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/back_32px.png"))); // NOI18N
         Buttonhidemenu.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -252,7 +255,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
 
         MenuIcon.add(hidemenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 50, 50));
 
-        settingsmenu.setBackground(new java.awt.Color(15, 29, 52));
+        settingsmenu.setBackground(new java.awt.Color(0, 0, 0));
         settingsmenu.setPreferredSize(new java.awt.Dimension(50, 5));
 
         javax.swing.GroupLayout settingsmenuLayout = new javax.swing.GroupLayout(settingsmenu);
@@ -270,7 +273,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
 
         menu.add(MenuIcon, java.awt.BorderLayout.LINE_START);
 
-        menuhide.setBackground(new java.awt.Color(25, 29, 74));
+        menuhide.setBackground(new java.awt.Color(31, 31, 31));
         menuhide.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setOpaque(false);
@@ -389,7 +392,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
 
         add(menu, java.awt.BorderLayout.LINE_START);
 
-        userProcessContainer.setBackground(new java.awt.Color(73, 128, 242));
+        userProcessContainer.setBackground(new java.awt.Color(208, 93, 2));
         userProcessContainer.setLayout(new java.awt.CardLayout());
         add(userProcessContainer, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
@@ -461,7 +464,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         // TODO add your handling code here:
         
-        ManageOrganizationJPanel manageOrganizationJPanel = new ManageOrganizationJPanel(userProcessContainer, enterprise.getOrganizationDirectory(), enterprise);
+        ManageOrganizationJPanel manageOrganizationJPanel = new ManageOrganizationJPanel(userProcessContainer, enterprise.getOrganizationDirectory(), enterprise, system);
         userProcessContainer.add("manageOrganizationJPanel", manageOrganizationJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -469,7 +472,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         // TODO add your handling code here:
-        ManageEmployeeJPanel manageEmployeeJPanel = new ManageEmployeeJPanel(userProcessContainer, enterprise.getOrganizationDirectory(), enterprise);
+        ManageEmployeeJPanel manageEmployeeJPanel = new ManageEmployeeJPanel(userProcessContainer, enterprise.getOrganizationDirectory(), enterprise, system);
         userProcessContainer.add("manageEmployeeJPanel", manageEmployeeJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
