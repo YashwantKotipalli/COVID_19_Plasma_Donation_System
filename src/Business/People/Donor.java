@@ -102,7 +102,7 @@ public class Donor {
           
     @Override
     public String toString() {
-        return name;
+        return donorID;
     }
        
     
