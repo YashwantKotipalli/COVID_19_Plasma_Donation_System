@@ -11,14 +11,14 @@ package Business.BloodGroup;
  */
 public class BloodGroup {
     
-    private static int aPositive = 0;
-    private static int aNegative = 0;
-    private static int bPositive = 0;
-    private static int bNegative = 0;
-    private static int oPositive = 0;
-    private static int oNegative = 0;
-    private static int abPositive = 0;
-    private static int abNegative = 0;
+    private static int aPositive = 30;
+    private static int aNegative = 25;
+    private static int bPositive = 65;
+    private static int bNegative = 35;
+    private static int oPositive = 75;
+    private static int oNegative = 27;
+    private static int abPositive = 35;
+    private static int abNegative = 28;
 
     public BloodGroup(String bloodGroup){
         if(bloodGroup.equals("A+")){
@@ -117,7 +117,7 @@ public class BloodGroup {
     }
     
     
-    public static void subtractBloodGroup(String bloodGroup){
+    public void subtractBloodGroup(String bloodGroup){
         if(bloodGroup.equals("A+")){
             aPositive--;
         }
@@ -145,6 +145,42 @@ public class BloodGroup {
         else{
             System.out.println("Blood Group invalid");
         }
+        
+    }
+
+    public void addBloodGroup(String bloodGroup){
+        if(bloodGroup.equals("A+")){
+            aPositive++;
+        }
+        else if(bloodGroup.equals("A-")){
+            aNegative++;
+        }
+        else if(bloodGroup.equals("B+")){
+            bPositive++;
+        }
+        else if(bloodGroup.equals("B-")){
+            bNegative++;
+        }
+        else if(bloodGroup.equals("AB+")){
+            abPositive++;
+        }
+        else if(bloodGroup.equals("AB-")){
+            abNegative++;
+        }
+        else if(bloodGroup.equals("O+")){
+            oPositive++;
+        }
+        else if(bloodGroup.equals("O-")){
+            oNegative++;
+        }
+        else{
+            System.out.println("Blood Group invalid");
+        }
+        
+    }
+    
+    
+    public BloodGroup() {
         
     }
     
